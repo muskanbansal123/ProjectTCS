@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="all">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/homepic"
@@ -16,7 +16,11 @@
             android:id="@+id/nav_log"
             android:icon="@drawable/accountcircle"
             android:title="Login"
-            android:onClick="Loginpage"/>
+           />
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@drawable/accountbox"
+            android:title="Update" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -25,7 +29,14 @@
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Tools"
+            android:layout_width="match_parent" />
+
+        <item
+            android:id="@+id/nav_req"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Request"
+            android:layout_width="match_parent" />
     </group>
 
     <item android:title="Communicate">
@@ -39,10 +50,7 @@
                 android:icon="@drawable/helpbox"
                 android:title="Help" />
 
-            <item
-                android:id="@+id/nav_info"
-                android:icon="@drawable/infopic"
-                android:title="About Us" />
+
 
         </menu>
     </item>

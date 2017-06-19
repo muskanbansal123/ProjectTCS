@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,11 +54,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void Loginpage(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, Loginpage.class);
-        startActivity(intent);
-    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,6 +79,8 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -88,20 +88,39 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_account) {
+
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+            return true;
+        }
+        else if (id == R.id.nav_account) {
 
         }  else if (id == R.id.nav_log) {
+
+            Intent in = new Intent(MainActivity.this, loginn.class);
+            startActivity(in);
+            return true;
 
         }else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        }else if (id == R.id.nav_req) {
+
+            Intent intent = new Intent(MainActivity.this, requestpage.class);
+            startActivity(intent);
+            return true;
+
+        }
+        else if (id == R.id.nav_update) {
+
+            Intent inte = new Intent(MainActivity.this, Update.class);
+            startActivity(inte);
+            return true;
+
+        }else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_help) {
-
-        } else if (id == R.id.nav_info) {
 
         }
 

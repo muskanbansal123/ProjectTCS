@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Blood Group"
+        android:id="@+id/textView_bloodgroup"
+        android:layout_marginTop="66dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Units Needed"
+        android:id="@+id/textView_units"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="City"
+        android:id="@+id/textView_city"
+        android:layout_marginTop="250dp"
+        android:layout_alignParentStart="@+id/textView_bloodgroup"
+        android:layout_alignParentLeft="@+id/textView_bloodgroup"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_bloodgroups"
+
+        android:layout_alignBottom="@+id/textView_bloodgroup"
+        android:layout_toRightOf="@+id/textView_units"
+        android:layout_toEndOf="@+id/textView_units"
+        android:layout_marginLeft="51dp"
+        android:layout_marginStart="51dp" />
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_alignLeft="@+id/textView_units"
+        android:layout_alignStart="@+id/textView_units"
+        android:padding="12dp"
+        android:text="Submit"
+        android:textSize="25dp"
+        android:textColor="#FFEBEE"
+        android:background="#D13131"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText_unitss"
+        android:layout_alignBaseline="@+id/textView_units"
+        android:layout_alignBottom="@+id/textView_units"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText_city"
+        android:layout_alignBottom="@+id/textView_city"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>
+
+
