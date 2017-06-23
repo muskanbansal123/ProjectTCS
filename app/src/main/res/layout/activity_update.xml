@@ -1,131 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:background="#f0e6322d"
-        android:layout_gravity="center"
-        android:text="Update"
-        android:includeFontPadding="false"
-        android:id="@+id/request"
-        android:textSize="50dp"
-        android:gravity="center"
-
-        android:textColor="#ffffff"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:text="Last Donated Date"
-        android:includeFontPadding="false"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_marginTop="45dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#dedede"
-        android:layout_gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:inputType="date"
-        android:textColorHint="#7f8c8d"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:textSize="25dp"
-
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Age"
+        android:id="@+id/textView_age"
+        android:layout_marginTop="66dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#0277BD"
         />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Height"
-        android:includeFontPadding="false"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#dedede"
-        android:layout_gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:textColorHint="#7f8c8d"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:textSize="25dp"
-        android:inputType="numberDecimal"
+        android:id="@+id/textView_height"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:textColor="#0277BD"
         />
 
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Weight"
-        android:includeFontPadding="false"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#dedede"
-        android:layout_gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:textColorHint="#7f8c8d"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:textSize="25dp"
-        android:inputType="numberDecimal"
+        android:id="@+id/textView_weight"
+        android:layout_marginTop="250dp"
+        android:layout_alignParentStart="@+id/textView_bloodgroup"
+        android:layout_alignParentLeft="@+id/textView_bloodgroup"
+        android:layout_marginLeft="10dp"
+        android:textColor="#0277BD"
         />
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:text="HB"
-        android:includeFontPadding="false"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#dedede"
-        android:layout_gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:textColorHint="#7f8c8d"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:textSize="25dp"
-        android:inputType="numberDecimal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Last Donated Date"
+        android:id="@+id/textView_date"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentStart="@+id/textView_bloodgroup"
+        android:layout_alignParentLeft="@+id/textView_bloodgroup"
+        android:layout_marginLeft="10dp"
+        android:textColor="#0277BD"
         />
 
 
-    <Button
-        android:layout_width="match_parent"
+    <EditText
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:background="#27ae60"
-        android:textColor="#ffff"
-        android:text="Update"/>
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText_height"
+        android:backgroundTint="#0277BD"
+        android:layout_alignBottom="@+id/textView_height"
+        android:layout_alignLeft="@+id/editText_weight"
+        android:layout_alignStart="@+id/editText_weight" />
 
-</LinearLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText_weight"
+        android:backgroundTint="#0277BD"
+        android:layout_alignBottom="@+id/textView_weight"
+        android:layout_alignLeft="@+id/editText_age"
+        android:layout_alignStart="@+id/editText_age" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText_date"
+        android:backgroundTint="#0277BD"
+        android:layout_alignBottom="@+id/textView_date"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText_age"
+        android:backgroundTint="#0277BD"
+        android:layout_alignBaseline="@+id/textView_age"
+        android:layout_alignBottom="@+id/textView_age"
+        android:layout_alignRight="@+id/btn_update"
+        android:layout_alignEnd="@+id/btn_update" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_update"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Update"
+        android:textSize="25dp"
+        android:textColor="#FFEBEE"
+        android:background="#29B6F6"
+        android:onClick="onUpdateClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="64dp" />
+
+</RelativeLayout>

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
 
 
@@ -13,6 +14,8 @@
         android:text="Blood Group"
         android:id="@+id/textView_bloodgroup"
         android:layout_marginTop="66dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#009688"
         />
 
     <TextView
@@ -23,7 +26,10 @@
         android:id="@+id/textView_units"
         android:layout_marginTop="150dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:textColor="#009688"
+        />
 
 
     <TextView
@@ -34,7 +40,10 @@
         android:id="@+id/textView_city"
         android:layout_marginTop="250dp"
         android:layout_alignParentStart="@+id/textView_bloodgroup"
-        android:layout_alignParentLeft="@+id/textView_bloodgroup"/>
+        android:layout_alignParentLeft="@+id/textView_bloodgroup"
+        android:layout_marginLeft="10dp"
+        android:textColor="#009688"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -42,27 +51,15 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText_bloodgroups"
-
         android:layout_alignBottom="@+id/textView_bloodgroup"
         android:layout_toRightOf="@+id/textView_units"
         android:layout_toEndOf="@+id/textView_units"
         android:layout_marginLeft="51dp"
-        android:layout_marginStart="51dp" />
-
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:layout_alignLeft="@+id/textView_units"
-        android:layout_alignStart="@+id/textView_units"
-        android:padding="12dp"
-        android:text="Submit"
-        android:textSize="25dp"
-        android:textColor="#FFEBEE"
-        android:background="#D13131"
+        android:layout_marginStart="51dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="#009688"
         />
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -73,17 +70,40 @@
         android:layout_alignBaseline="@+id/textView_units"
         android:layout_alignBottom="@+id/textView_units"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="#009688"
+        />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="text"
         android:ems="10"
         android:id="@+id/editText_city"
         android:layout_alignBottom="@+id/textView_city"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="#009688"
+
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_request"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_alignLeft="@+id/textView_units"
+        android:layout_alignStart="@+id/textView_units"
+        android:padding="12dp"
+        android:text="Request"
+        android:textSize="25dp"
+        android:textColor="#FFEBEE"
+        android:background="#4DB6AC"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:onClick="onButtonClick" />
 
 
 </RelativeLayout>

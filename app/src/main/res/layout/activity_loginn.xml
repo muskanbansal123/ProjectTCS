@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
 
-    android:background="#E58B8B"
-    >
+    android:background="#E58B8B">
 
     <LinearLayout
         android:orientation="vertical"
@@ -33,7 +32,10 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
-                android:hint="Email" />
+                android:textColorHint="#FFFFFF"
+                android:backgroundTint="#000000"
+                android:hint="Email"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -47,28 +49,35 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Password"
+                android:textColorHint="#FFFFFF"
                 android:textColor="#FFFFFF"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/blogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="Login"
+            android:textColor="#FFFFFF"
             android:background="#D13131"
-            android:shadowColor="#FFFFFF"/>
+            android:shadowColor="#FFFFFF"
+            android:onClick="onButtonClick"/>
 
-        <TextView android:id="@+id/link_signup"
+        <Button android:id="@+id/bsignup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="No account yet? Create one"
+            android:background="#D13131"
             android:textColor="#FFFFFF"
+            android:shadowColor="#FFFFFF"
+
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16sp"
+            android:onClick="onButtonClick" />
 
     </LinearLayout>
 </ScrollView>

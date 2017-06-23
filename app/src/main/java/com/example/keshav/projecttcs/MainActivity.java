@@ -47,14 +47,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if(drawer!=null){
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }  }
     }
-
-
 
 
     @Override
@@ -95,6 +94,10 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_account) {
 
+            Intent intent = new Intent(MainActivity.this, Signup.class);
+            startActivity(intent);
+            return true;
+
         }  else if (id == R.id.nav_log) {
 
             Intent in = new Intent(MainActivity.this, loginn.class);
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent inte = new Intent(MainActivity.this, Update.class);
             startActivity(inte);
+
             return true;
 
         }else if (id == R.id.nav_share) {
