@@ -52,14 +52,16 @@ public class loginn extends MainActivity {
             EditText b = (EditText) findViewById(R.id.input_email);
             String pass = b.getText().toString();
 
-            /*String password = helper.searchPass(str);
+
+
+            String password = helper.searchPass(str);
             if(pass.equals(password))
             {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("Email address", str);
                 startActivity(intent);
 
-            }*/
+            }
 
             if(TextUtils.isEmpty(str)) {
                 a.setError("Please specify the Email id");

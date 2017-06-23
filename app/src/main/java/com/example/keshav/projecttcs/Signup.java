@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 public class Signup extends MainActivity {
 
+    DatabaseHelper helper = new DatabaseHelper(this);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,21 +110,19 @@ public class Signup extends MainActivity {
             {
                 Toast.makeText(getApplicationContext(), "Enter Valid Email-Id", Toast.LENGTH_LONG).show();
             }
-         /* public boolean isValidEmail (String email)
+
+            else
             {
+                Contact c  = new Contact();
+                c.setName(namestr);
+                c.setEmail_add(emailstr);
+                c.setPassword(pass1str);
+               // c.setAge(agestr);
+                c.setCity(citystr);
+                //c.setPincode(pincodestr);
 
-                    Pattern pattern;
-                    Matcher matcher;
-                    final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-                    pattern = Pattern.compile(EMAIL_PATTERN);
-                    matcher = pattern.matcher(email);
-                    return matcher.matches();
-
-
-
-        }*/
-
-
+                helper.insertContact(c);
+            }
         }
         if (v.getId() == R.id.link_login) {
             Intent intent = new Intent(this, loginn.class);
