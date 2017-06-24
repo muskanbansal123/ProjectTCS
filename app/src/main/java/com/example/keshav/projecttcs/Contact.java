@@ -13,28 +13,20 @@ import org.w3c.dom.Text;
 public class Contact {
 
 
-    int age, contact, pincode;
-    String email_add, name, password, city, bgroup;
+
+    String email_add, name, password, city, bgroup,  age, pincode;
 
 
 
-    public void setAge (int age)
+    public void setAge (String age)
     {
         this.age = age;
     }
-    public int getAge()
+    public String getAge()
     {
         return this.age;
     }
 
-    public void setContact (int contact)
-    {
-        this.contact = contact;
-    }
-    public int getContact()
-    {
-        return this.contact;
-    }
     public void setName (String name)
     {
         this.name = name;
@@ -79,11 +71,11 @@ public class Contact {
         return this.bgroup;
     }
 
-    public void setPincode (int pincode)
+    public void setPincode (String pincode)
     {
         this.pincode = pincode;
     }
-    public int getPincode()
+    public String getPincode()
     {
         return this.pincode;
     }

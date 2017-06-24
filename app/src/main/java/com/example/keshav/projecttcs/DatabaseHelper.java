@@ -14,24 +14,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME="people.db";
-    private static final String TABLE_NAME="people_table";
+    private static final String DATABASE_NAME="contacts.db";
+    private static final String TABLE_NAME="contacts";
 
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_AGE = "age";
-    private static final String COLUMN_CONTACT = "contact";
+   //private static final String COLUMN_CONTACT = "contact";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASS = "password";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_CITY = "city";
-    private static final String COLUMN_BGROUP = "bgroup";
+    //private static final String COLUMN_BGROUP = "bgroup";
     private static final String COLUMN_PINCODE = "pincode";
 
     SQLiteDatabase db;
 
     //write query
-    private static final String TABLE_CREATE = "create table peope_table(id integer primary key not null ," +
-            "name text not null, email text not null, password text not null, city text not null, bgroup text not null, age integer not null, contact integer not null);";
+    private static final String TABLE_CREATE = "create table contacts(id integer primary key not null ," +
+            "name text not null, email text not null, password text not null, city text not null, age text not null, pincode text not null);";
 
     public DatabaseHelper(Context context)
     {
@@ -62,13 +62,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ID, count);
 
         values.put(COLUMN_NAME, c.getName());
-       // values.put(COLUMN_AGE, c.getAge());
+       values.put(COLUMN_AGE, c.getAge());
         //values.put(COLUMN_BGROUP, c.getBgroup());
         values.put(COLUMN_CITY, c.getCity());
         //values.put(COLUMN_CONTACT,c.getContact());
         values.put(COLUMN_EMAIL, c.getEmail_add());
         values.put(COLUMN_PASS, c.getPassword());
-        //values.put(COLUMN_PINCODE, c.getPincode());
+        values.put(COLUMN_PINCODE, c.getPincode());
 
         db.insert(TABLE_NAME, null, values);
         db.close();
@@ -76,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String searchPass(String email)
     {
         db = this.getReadableDatabase();
-        String query = "select email address, pass from"+TABLE_NAME;
+        String query = "select email, password from "+TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
 
         String a,b = null;

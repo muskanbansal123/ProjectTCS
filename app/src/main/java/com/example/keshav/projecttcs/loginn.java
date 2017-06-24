@@ -24,44 +24,16 @@ public class loginn extends MainActivity {
         setContentView(R.layout.activity_loginn);
     }
 
-  /* public boolean emailValidator(String email)
-    {
-        try {
-            Pattern pattern;
-            Matcher matcher;
-            final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-            pattern = Pattern.compile(EMAIL_PATTERN);
-            matcher = pattern.matcher(email);
-            return matcher.matches();
 
-        } catch (Exception e)
-        {
-            Toast em = Toast.makeText(this, "Email address doesn't exist", Toast.LENGTH_SHORT);
-            em.show();
-
-        }
-        return matcher.matches();
-    }*/
     public void onButtonClick (View v)
     {
         if(v.getId() == R.id.blogin)
         {
-            EditText a = (EditText) findViewById(R.id.input_email);
+            EditText a = (EditText) findViewById(R.id.edemail);
             String str = a.getText().toString();
 
-            EditText b = (EditText) findViewById(R.id.input_email);
+            EditText b = (EditText) findViewById(R.id.edpassword);
             String pass = b.getText().toString();
-
-
-
-            String password = helper.searchPass(str);
-            if(pass.equals(password))
-            {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("Email address", str);
-                startActivity(intent);
-
-            }
 
             if(TextUtils.isEmpty(str)) {
                 a.setError("Please specify the Email id");
@@ -72,6 +44,31 @@ public class loginn extends MainActivity {
                 b.setError("Please specify the Password");
                 return;
             }
+
+
+
+            String password = helper.searchPass(str);
+            if(pass.equals(password))
+            {
+                Toast temp = Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT);
+                temp.show();
+
+                Intent intent = new Intent(this, MainActivity.class);
+                //intent.putExtra("Email address", str);
+                startActivity(intent);
+
+
+            }
+
+            /*if(TextUtils.isEmpty(str)) {
+                a.setError("Please specify the Email id");
+                return;
+            }
+
+            if(TextUtils.isEmpty(pass)) {
+                b.setError("Please specify the Password");
+                return;
+            }*/
 
             else
             {

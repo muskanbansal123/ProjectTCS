@@ -24,21 +24,6 @@ public class Signup extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-       /* EditText name = (EditText)findViewById(R.id.input_name);
-        EditText email = (EditText)findViewById(R.id.input_email);
-        EditText pass1 = (EditText)findViewById(R.id.input_password);
-        EditText pass2 = (EditText)findViewById(R.id.input_confirmpassword);
-        EditText age = (EditText)findViewById(R.id.input_Age);
-        EditText city = (EditText)findViewById(R.id.input_City);
-        EditText pincode = (EditText)findViewById(R.id.input_Pincode);
-
-        String namestr = name.getText().toString();
-        String emailstr = email.getText().toString();
-        String pass1str = pass1.getText().toString();
-        String pass2str = pass2.getText().toString();
-        String agestr = age.getText().toString();
-        String citystr = city.getText().toString();
-        String pincodestr = pincode.getText().toString();*/
     }
 
     public void onButtonClick(View v) {
@@ -58,6 +43,7 @@ public class Signup extends MainActivity {
         String agestr = age.getText().toString();
         String citystr = city.getText().toString();
         String pincodestr = pincode.getText().toString();
+
         if (v.getId() == R.id.Bsignupbutton) {
 
             isValidEmail(emailstr);
@@ -101,12 +87,12 @@ public class Signup extends MainActivity {
                 return;
             }
 
-            if (isValidEmail(emailstr) == true) {
+            if (isValidEmail(emailstr)) {
                 Toast temp = Toast.makeText(Signup.this, "You are successfully registered!", Toast.LENGTH_SHORT);
                 temp.show();
             }
 
-            if (isValidEmail(emailstr) == false)
+            if (!isValidEmail(emailstr))
             {
                 Toast.makeText(getApplicationContext(), "Enter Valid Email-Id", Toast.LENGTH_LONG).show();
             }
@@ -117,9 +103,9 @@ public class Signup extends MainActivity {
                 c.setName(namestr);
                 c.setEmail_add(emailstr);
                 c.setPassword(pass1str);
-               // c.setAge(agestr);
+                c.setAge(agestr);
                 c.setCity(citystr);
-                //c.setPincode(pincodestr);
+                c.setPincode(pincodestr);
 
                 helper.insertContact(c);
             }
@@ -130,11 +116,6 @@ public class Signup extends MainActivity {
         }
 
     }
-
-    /*private boolean isValidEmail(CharSequence target) {
-
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }*/
 
 
     /*public boolean onCreateOptionsMenu(Menu menu)
