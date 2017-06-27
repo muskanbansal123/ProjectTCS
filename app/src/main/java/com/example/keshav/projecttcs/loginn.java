@@ -54,7 +54,7 @@ public class loginn extends MainActivity {
                 temp.show();
 
                 Intent intent = new Intent(this, MainActivity.class);
-                //intent.putExtra("Email address", str);
+                //intent.putExtra("1", st);
                 startActivity(intent);
 
 

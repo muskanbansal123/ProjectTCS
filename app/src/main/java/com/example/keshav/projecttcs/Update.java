@@ -12,6 +12,9 @@ import android.widget.Toast;
  */
 
 public class Update extends MainActivity  {
+
+    DatabaseHelper helper = new DatabaseHelper(this);
+
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
@@ -54,6 +57,14 @@ public class Update extends MainActivity  {
             }
 
             else {
+
+                UpdateDB c1  = new UpdateDB();
+                c1.setHeight(strH);
+                c1.setWeight(strW);
+                c1.setLdate(strD);
+
+                helper.insertContact1(c1);
+
                 Toast tem = Toast.makeText(this, "Your profile has been updated!, Press the back button", Toast.LENGTH_SHORT);
                 tem.show();
             }

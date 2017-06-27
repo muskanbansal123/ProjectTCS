@@ -47,6 +47,13 @@ public class requestpage extends MainActivity  {
                 etcity.setError("Please specify the city");
                 return;
             }
+
+            if(!(strUserName .equals("b+")|| strUserName .equals("a+") || strUserName .equals("o+") ||strUserName .equals("ab+") || strUserName .equals("b-") || strUserName .equals("a-") || strUserName .equals("o-") || strUserName .equals("ab-") || strUserName .equals("A+") || strUserName .equals("B+") || strUserName .equals("O+") || strUserName .equals("AB+") || strUserName .equals("B-") || strUserName .equals("A-") || strUserName .equals("O-") || strUserName .equals("AB-") || strUserName .equals("Ab+") || strUserName .equals("Ab-") || strUserName .equals("aB+") || strUserName .equals("aB-")))
+            {
+                Toast t = Toast.makeText(this, "Enter valid blood group!", Toast.LENGTH_SHORT);
+                t.show();
+
+            }
             else
             {
                 Toast t = Toast.makeText(this, "You made a request, Press back button", Toast.LENGTH_SHORT);

@@ -34,6 +34,8 @@ public class Signup extends MainActivity {
         EditText age = (EditText) findViewById(R.id.input_Age);
         EditText city = (EditText) findViewById(R.id.input_City);
         EditText pincode = (EditText) findViewById(R.id.input_Pincode);
+        EditText gender = (EditText)findViewById(R.id.input_gender);
+        EditText phone = (EditText) findViewById(R.id.input_phone);
 
 
         String namestr = name.getText().toString();
@@ -43,6 +45,8 @@ public class Signup extends MainActivity {
         String agestr = age.getText().toString();
         String citystr = city.getText().toString();
         String pincodestr = pincode.getText().toString();
+        String genderstr = gender.getText().toString();
+        String phonestr = phone.getText().toString();
 
         if (v.getId() == R.id.Bsignupbutton) {
 
@@ -86,6 +90,14 @@ public class Signup extends MainActivity {
                 pincode.setError("Please specify the pincode");
                 return;
             }
+            if (TextUtils.isEmpty(genderstr)) {
+                gender.setError("Please specify your gender");
+                return;
+            }
+            if (TextUtils.isEmpty(phonestr)) {
+                phone.setError("Please specify your contact number");
+                return;
+            }
 
             if (isValidEmail(emailstr)) {
                 Toast temp = Toast.makeText(Signup.this, "You are successfully registered!", Toast.LENGTH_SHORT);
@@ -106,6 +118,8 @@ public class Signup extends MainActivity {
                 c.setAge(agestr);
                 c.setCity(citystr);
                 c.setPincode(pincodestr);
+                c.setGender(genderstr);
+                c.setPhone(phonestr);
 
                 helper.insertContact(c);
             }
@@ -134,6 +148,8 @@ public class Signup extends MainActivity {
              i.putExtra()
          }
      }*/
+
+
     public void onBackPressed() {
         startActivity(new Intent(Signup.this, MainActivity.class));
         super.onBackPressed();

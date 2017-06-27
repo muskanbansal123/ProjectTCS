@@ -14,7 +14,7 @@ public class Contact {
 
 
 
-    String email_add, name, password, city, bgroup,  age, pincode;
+    String email_add, name, password, city, age, pincode, gender, phone;
 
 
 
@@ -62,15 +62,6 @@ public class Contact {
         return this.city;
     }
 
-    public void setBgroup (String bgroup)
-    {
-        this.bgroup = bgroup;
-    }
-    public String getBgroup()
-    {
-        return this.bgroup;
-    }
-
     public void setPincode (String pincode)
     {
         this.pincode = pincode;
@@ -79,5 +70,27 @@ public class Contact {
     {
         return this.pincode;
     }
+
+    public void setGender (String gender)
+    {
+        this.gender = gender;
+    }
+    public String getGender()
+    {
+        return this.gender;
+    }
+
+
+
+    public void setPhone (String phone)
+    {
+        this.phone = phone;
+    }
+    public String getPhone()
+    {
+        return this.phone;
+    }
+
+
 
 }
