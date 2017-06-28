@@ -36,6 +36,9 @@ public class Update extends MainActivity  {
             EditText etd = (EditText)findViewById(R.id.editText_date);
             String strD = etd.getText().toString();
 
+            EditText etp = (EditText)findViewById(R.id.editText_phone);
+            String strP = etd.getText().toString();
+
             if(TextUtils.isEmpty(strA)) {
                 etAge.setError("Please specify your age");
                 return;
@@ -62,7 +65,8 @@ public class Update extends MainActivity  {
                 c1.setHeight(strH);
                 c1.setWeight(strW);
                 c1.setLdate(strD);
-
+                c1.setUage(strA);
+                c1.setUphone(strP);
                 helper.insertContact1(c1);
 
                 Toast tem = Toast.makeText(this, "Your profile has been updated!, Press the back button", Toast.LENGTH_SHORT);

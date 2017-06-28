@@ -45,13 +45,12 @@ public class loginn extends MainActivity {
                 return;
             }
 
-
-
             String password = helper.searchPass(str);
             if(pass.equals(password))
             {
                 Toast temp = Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT);
                 temp.show();
+                //Profile.flag=true;
 
                 Intent intent = new Intent(this, MainActivity.class);
                 //intent.putExtra("1", st);
@@ -59,16 +58,6 @@ public class loginn extends MainActivity {
 
 
             }
-
-            /*if(TextUtils.isEmpty(str)) {
-                a.setError("Please specify the Email id");
-                return;
-            }
-
-            if(TextUtils.isEmpty(pass)) {
-                b.setError("Please specify the Password");
-                return;
-            }*/
 
             else
             {

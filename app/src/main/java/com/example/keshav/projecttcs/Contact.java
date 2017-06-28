@@ -80,8 +80,6 @@ public class Contact {
         return this.gender;
     }
 
-
-
     public void setPhone (String phone)
     {
         this.phone = phone;

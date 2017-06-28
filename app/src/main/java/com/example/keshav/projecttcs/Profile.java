@@ -3,8 +3,13 @@ package com.example.keshav.projecttcs;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.jar.Attributes;
 
@@ -15,9 +20,10 @@ import java.util.jar.Attributes;
 public class Profile extends MainActivity {
 
     Button btnAddData;
+    private TextView name,age,height,weight,ldate,phone;
     Button btnviewAll;
 
-    int flag;
+    static boolean flag;
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
@@ -27,8 +33,16 @@ public class Profile extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        name=(TextView)findViewById(R.id.prname);
+        age=(TextView)findViewById(R.id.prage);
+        height=(TextView)findViewById(R.id.prheight);
+        weight=(TextView)findViewById(R.id.prweight);
+        ldate=(TextView)findViewById(R.id.prdate);
+        phone=(TextView)findViewById(R.id.prphone);
+
+
+
         Intent i = new Intent(this,MainActivity.class);
-        flag = 1;
 
         //helper.get_info(String x, String y, String z);
 
@@ -56,24 +70,24 @@ public class Profile extends MainActivity {
                         Cursor res=  helper.get_info();
                         if(res.getCount() == 0)
                         {
-                            //show msg
+                            Toast.makeText(Profile.this,"No data Found",Toast.LENGTH_SHORT).show();
                             return;
                         }
                         StringBuffer buffer = new StringBuffer();
 
                         while (res.moveToNext())
                         {
-                            buffer.append("Name: "+res.getString(res.getColumnIndex(COLUMN_NAME))+"\n");
+                            name.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_NAME)));
 
-                            buffer.append("Age: "+res.getString(res.getColumnIndex(COLUMN_AGE))+"\n");
+                            age.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_AGE))+"\n");
 
-                            buffer.append("Height: "+res.getString(res.getColumnIndex(COLUMN_HEIGHT))+"\n");
+                            height.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_HEIGHT))+"\n");
 
-                            buffer.append("Weight: "+res.getString(res.getColumnIndex(COLUMN_WEIGHT))+"\n");
+                            weight.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_WEIGHT))+"\n");
 
-                            buffer.append("Date: "+res.getString(res.getColumnIndex(COLUMN_LDATE))+"\n");
+                            ldate.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_LDATE))+"\n");
 
-                            buffer.append("Contact: "+res.getString(res.getColumnIndex(COLUMN_PHONE))+"\n");
+                            phone.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_PHONE))+"\n");
 
                         }
                         //show all data
@@ -82,10 +96,4 @@ public class Profile extends MainActivity {
         );
     }
 
-
-
-    public void Profile(String x, String y, String z)
-
-}
-    {
 }

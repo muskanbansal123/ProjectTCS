@@ -6,7 +6,7 @@ package com.example.keshav.projecttcs;
 
 public class UpdateDB {
 
-    String  height, weight, ldate;
+    String  height, weight, ldate, uage, uphone;
 
     public void setWeight (String weight)
     {
@@ -34,4 +34,23 @@ public class UpdateDB {
     {
         return this.height;
     }
+
+    public void setUage (String uage)
+    {
+        this.uage = uage;
+    }
+    public String getUage()
+    {
+        return this.uage;
+    }
+
+    public void setUphone (String uphone)
+    {
+        this.uphone = uphone;
+    }
+    public String getUphone()
+    {
+        return this.uphone;
+    }
+
 }

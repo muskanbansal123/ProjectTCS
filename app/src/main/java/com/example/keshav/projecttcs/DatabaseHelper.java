@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import static android.R.attr.y;
 
@@ -22,21 +23,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_UPDATEDB="updates";
 
-    private static final String COLUMN_ID = "id";
-    private static final String COLUMN_AGE = "age";
-   private static final String COLUMN_GENDER = "gender";
-    private static final String COLUMN_EMAIL = "email";
-    private static final String COLUMN_PASS = "password";
-    private static final String COLUMN_NAME = "name";
-    private static final String COLUMN_CITY = "city";
-    private static final String COLUMN_PHONE = "phone";
-    private static final String COLUMN_PINCODE = "pincode";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_AGE = "age";
+    public static final String COLUMN_GENDER = "gender";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_PASS = "password";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_CITY = "city";
+    public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_PINCODE = "pincode";
 
-    private static final String KEY_UPDATEDB = "upd";
+    public static final String KEY_UPDATEDB = "upd";
 
-    private static final String COLUMN_HEIGHT = "height";
-    private static final String COLUMN_WEIGHT = "weight";
-    private static final String COLUMN_LDATE = "ldate";
+    public static final String COLUMN_HEIGHT = "height";
+    public static final String COLUMN_WEIGHT = "weight";
+    public static final String COLUMN_LDATE = "ldate";
+    public static final String COLUMN_UAGE = "uage";
+    public static final String COLUMN_UPHONE = "uphone";
 
 
     SQLiteDatabase db, db1;
@@ -45,7 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CREATE = "create table contacts(id integer primary key not null ," +
             "name text not null, email text not null, password text not null, city text not null, age text not null, pincode text not null, gender text not null, phone text not null);";
 
-    private static final String TABLE_CREATE_UPDATE = "create table updates(upd integer primary key not null id integer foreign key not null," + "height text not null, weight text not null, ldate text not null);";
+    private static final String TABLE_CREATE_UPDATE = "create table updates(upd integer primary key not null," +
+            " height text not null, weight text not null, ldate text not null, uage text not null, uphone text not null);";
 
 
     public DatabaseHelper(Context context)
@@ -56,30 +60,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(TABLE_CREATE);
+
+        //db.execSQL(TABLE_CREATE_UPDATE);
         this.db = db;
 
-    }
-
-    public void onCreate1(SQLiteDatabase db1)
-    {
-        db1.execSQL(TABLE_CREATE_UPDATE);
-        this.db1 = db1;
     }
 
     public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS" + TABLE_NAME;
         db.execSQL(query);
+
+
+        //String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
+        //db.execSQL(query1);
+
         this.onCreate(db);
     }
 
-    public void onUpgrade1(SQLiteDatabase db1, int oldV, int newV)
-    {
-        String query1 = "DROP TABLE IF EXISTS"+TABLE_UPDATEDB;
-        db1.execSQL(query1);
-        this.onCreate(db1);
-    }
 
-    public void insertContact (Contact c)
+    public void insertContact(Contact c)
     {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -91,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ID, count);
 
         values.put(COLUMN_NAME, c.getName());
-       values.put(COLUMN_AGE, c.getAge());
+        values.put(COLUMN_AGE, c.getAge());
         values.put(COLUMN_GENDER, c.getGender());
         values.put(COLUMN_CITY, c.getCity());
         values.put(COLUMN_PHONE,c.getPhone());
@@ -100,7 +99,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PINCODE, c.getPincode());
 
         db.insert(TABLE_NAME, null, values);
-        db.close();}
+        db.close();
+    }
 
     public void insertContact1(UpdateDB c1)
     {
@@ -117,15 +117,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values1.put(COLUMN_HEIGHT, c1.getHeight());
         values1.put(COLUMN_WEIGHT, c1.getWeight());
         values1.put(COLUMN_LDATE, c1.getLdate());
+        values1.put(COLUMN_UAGE, c1.getUage());
+        values1.put(COLUMN_UPHONE, c1.getUphone());
+        db1.insert(TABLE_UPDATEDB, null, values1);
+        db1.close();
     }
 
 
-    public Cursor get_info()          //Cursor class provides random read write interface
-    {
-        SQLiteDatabase db1 = this.getWritableDatabase();
-        Cursor res = db1.rawQuery("select * from "+TABLE_UPDATEDB, null);
+        public Cursor get_info()         //Cursor class provides random read write interface
+        {
+           SQLiteDatabase db1 = this.getReadableDatabase();
+            Cursor res = db1.rawQuery("select * from "+TABLE_UPDATEDB, null);
 
-        return res;
+         return res;
         /*db1 = this.getReadableDatabase();
 
         String query1 = "select height, weight, ldate from "+TABLE_UPDATEDB;
@@ -147,7 +151,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public String searchPass(String email)
     {
-        db = this.getReadableDatabase();
+        db = this.getWritableDatabase();
         String query = "select email, password from "+TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
 
@@ -156,12 +160,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst())
         {
             do {
-
-                a = cursor.getString(0);
+                Log.d("Error: ","Email matched");
+                //Log.d("Cursor " + cursor," ");
+                a = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
 
                 if (a.equals(email))
                 {
-                    b = cursor.getString(1);
+                    //Log.d("Error: ","Email matched");
+                    b = cursor.getString(cursor.getColumnIndex(COLUMN_PASS));
                     break;
                 }
 

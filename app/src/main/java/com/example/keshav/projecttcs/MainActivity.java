@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity
 
 
     @SuppressWarnings("StatementWithEmptyBody")
-    int flag;
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -101,8 +100,6 @@ public class MainActivity extends AppCompatActivity
             return true;
 
         }  else if (id == R.id.nav_log) {
-
-            flag = 1;
 
             Intent in = new Intent(MainActivity.this, loginn.class);
             startActivity(in);
@@ -137,7 +134,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_prof) {
 
-            if(flag == 1) {
+            if(Profile.flag) {
                 Intent inte = new Intent(MainActivity.this, Profile.class);
                 startActivity(inte);
             }
