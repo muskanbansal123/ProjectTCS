@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_CREATE);
 
         db.execSQL(TABLE_CREATE_UPDATE);
-        //this.db = db;
+        this.db = db;
 
     }
 
