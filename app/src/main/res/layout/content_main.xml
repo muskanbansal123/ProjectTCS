@@ -36,4 +36,6 @@
         android:id="@+id/editText"
 
         android:text="@string/text_with_paragraphs"/>
+
+
 </RelativeLayout>

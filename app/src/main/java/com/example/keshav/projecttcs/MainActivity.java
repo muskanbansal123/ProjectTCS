@@ -14,6 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.google.android.gms.auth.api.Auth;
 
 public class MainActivity extends AppCompatActivity
 
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -107,6 +114,9 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_gallery) {
 
+            Intent inte = new Intent(MainActivity.this, Gallery.class);
+            startActivity(inte);
+
         } else if (id == R.id.nav_manage) {
 
         }else if (id == R.id.nav_req) {
@@ -131,24 +141,27 @@ public class MainActivity extends AppCompatActivity
 
         else if (id == R.id.nav_logout) {
 
+            /*loginn l = new loginn();
+            l.signOut();*/
+
+            //Auth.GoogleSignInApi.signOut(loginn.googleApi)
+
         }
         else if (id == R.id.nav_prof) {
 
-            if(Profile.flag) {
+            if (Profile.flag) {
                 Intent inte = new Intent(MainActivity.this, Profile.class);
                 startActivity(inte);
-            }
-            else
-            {
+            } else {
                 Intent inte = new Intent(MainActivity.this, loginn.class);
                 startActivity(inte);
 
             }
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

@@ -60,6 +60,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
+            android:textSize="16sp"
             android:text="Login"
             android:textColor="#FFFFFF"
             android:background="#D13131"
@@ -74,10 +75,28 @@
             android:background="#D13131"
             android:textColor="#FFFFFF"
             android:shadowColor="#FFFFFF"
-
             android:gravity="center"
             android:textSize="16sp"
             android:onClick="onButtonClick" />
 
+        <com.google.android.gms.common.SignInButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D13131"
+            android:textColor="#FFFFFF"
+            android:shadowColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:onClick="onButtonClick"
+            android:id="@+id/btn_google">
+        </com.google.android.gms.common.SignInButton>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:id="@+id/btn_logout"
+            android:onClick="onButtonClick"/>
     </LinearLayout>
+
 </ScrollView>

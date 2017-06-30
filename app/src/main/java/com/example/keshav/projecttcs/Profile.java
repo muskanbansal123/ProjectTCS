@@ -3,9 +3,12 @@ package com.example.keshav.projecttcs;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.SyncStateContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +23,12 @@ import java.util.jar.Attributes;
 public class Profile extends MainActivity {
 
     Button btnAddData;
-    private TextView name,age,height,weight,ldate,phone;
+    private TextView name,age,height,weight,ldate,phone,pemail;
     Button btnviewAll;
+    static LinearLayout Prof_section;
 
+    static TextView Name,Email;
+    static ImageView Prof_pic;
     static boolean flag;
 
     DatabaseHelper helper = new DatabaseHelper(this);
@@ -33,13 +39,21 @@ public class Profile extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        name=(TextView)findViewById(R.id.prname);
+        name=(TextView)findViewById(R.id.prof_name);
+        pemail = (TextView)findViewById(R.id.prof_email);
+
         age=(TextView)findViewById(R.id.prage);
         height=(TextView)findViewById(R.id.prheight);
         weight=(TextView)findViewById(R.id.prweight);
         ldate=(TextView)findViewById(R.id.prdate);
         phone=(TextView)findViewById(R.id.prphone);
 
+        Prof_section = (LinearLayout)findViewById(R.id.prof_section);
+        Name = (TextView)findViewById(R.id.prof_name);
+        Email = (TextView)findViewById(R.id.prof_email);
+        Prof_pic = (ImageView)findViewById(R.id.prof_pic);
+
+        Prof_section.setVisibility(View.GONE);
 
 
         Intent i = new Intent(this,MainActivity.class);
@@ -94,6 +108,12 @@ public class Profile extends MainActivity {
                     }
                 }
         );
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+        super.onBackPressed();
     }
 
 }

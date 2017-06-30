@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.keshav.projecttcs">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -61,8 +67,14 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+        <activity android:name=".Gallery"
+            android:label="Project TCS"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
-\
+
+
+        \
     </application>
 
 </manifest>

@@ -55,11 +55,11 @@
                 android:id="@+id/nav_help"
                 android:icon="@drawable/helpbox"
                 android:title="Help" />
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/helpbox"
-                android:title="Logout" />
-
+                android:title="Logout"/>
 
 
         </menu>

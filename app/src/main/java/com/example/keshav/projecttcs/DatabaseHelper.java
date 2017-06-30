@@ -15,7 +15,7 @@ import static android.R.attr.y;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_NAME="contacts.db";
 
@@ -61,8 +61,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(TABLE_CREATE);
 
-        //db.execSQL(TABLE_CREATE_UPDATE);
-        this.db = db;
+        db.execSQL(TABLE_CREATE_UPDATE);
+        //this.db = db;
 
     }
 
@@ -71,8 +71,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
 
 
-        //String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
-        //db.execSQL(query1);
+        String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
+        db.execSQL(query1);
 
         this.onCreate(db);
     }
