@@ -67,6 +67,7 @@ public class Update extends MainActivity  {
                 c1.setLdate(strD);
                 c1.setUage(strA);
                 c1.setUphone(strP);
+                //helper.createDatabase();
                 helper.insertContact1(c1);
 
                 Toast tem = Toast.makeText(this, "Your profile has been updated!, Press the back button", Toast.LENGTH_SHORT);

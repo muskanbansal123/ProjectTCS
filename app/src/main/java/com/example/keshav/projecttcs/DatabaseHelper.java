@@ -15,7 +15,7 @@ import static android.R.attr.y;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME="contacts.db";
 
@@ -42,13 +42,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_UPHONE = "uphone";
 
 
-    SQLiteDatabase db, db1;
+   static SQLiteDatabase db;
 
     //write query
+
     private static final String TABLE_CREATE = "create table contacts(id integer primary key not null ," +
             "name text not null, email text not null, password text not null, city text not null, age text not null, pincode text not null, gender text not null, phone text not null);";
 
-    private static final String TABLE_CREATE_UPDATE = "create table updates(upd integer primary key not null," +
+    private static final String TABLE_CREATE_UPDATE = "create table updates( upd text primary key not null," +
             " height text not null, weight text not null, ldate text not null, uage text not null, uphone text not null);";
 
 
@@ -57,24 +58,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL(TABLE_CREATE);
-
         db.execSQL(TABLE_CREATE_UPDATE);
-        this.db = db;
+
+        //this.db = db;
 
     }
+
 
     public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS" + TABLE_NAME;
         db.execSQL(query);
 
 
-        String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
-        db.execSQL(query1);
+       // String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
+        //db.execSQL(query1);
 
-        this.onCreate(db);
+        onCreate(db);
     }
 
 
@@ -99,17 +101,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PINCODE, c.getPincode());
 
         db.insert(TABLE_NAME, null, values);
-        db.close();
+        //db.close();
     }
 
     public void insertContact1(UpdateDB c1)
     {
 
-        db1 = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         ContentValues values1 = new ContentValues();
 
         String query1 = "select * from updates";
-        Cursor cursor1 = db1.rawQuery(query1,null);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor1 = db.rawQuery(query1,null);
 
         int count1 = cursor1.getCount();
         values1.put(KEY_UPDATEDB, count1);
@@ -119,8 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values1.put(COLUMN_LDATE, c1.getLdate());
         values1.put(COLUMN_UAGE, c1.getUage());
         values1.put(COLUMN_UPHONE, c1.getUphone());
-        db1.insert(TABLE_UPDATEDB, null, values1);
-        db1.close();
+        db.insert(TABLE_UPDATEDB, null, values1);
+        db.close();
     }
 
 

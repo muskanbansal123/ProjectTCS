@@ -91,12 +91,14 @@
             android:id="@+id/btn_google">
         </com.google.android.gms.common.SignInButton>
 
+
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logout"
+            android:layout_height="match_parent"
             android:id="@+id/btn_logout"
-            android:onClick="onButtonClick"/>
+            android:text="logout"/>
+
+
     </LinearLayout>
 
 </ScrollView>

@@ -12,6 +12,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
+    repositories {
+        mavenCentral()
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,6 +41,9 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-maps:9.8.0'
+
+    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
