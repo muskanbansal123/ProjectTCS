@@ -22,13 +22,12 @@ import java.util.jar.Attributes;
 
 public class Profile extends MainActivity {
 
-    Button btnAddData;
-    private TextView name,age,height,weight,ldate,phone,pemail;
-    Button btnviewAll;
-    static LinearLayout Prof_section;
 
-    static TextView Name,Email;
-    static ImageView Prof_pic;
+    TextView name,age,height,weight,ldate,phone;
+    Button btnviewAll;
+
+    Button display;
+
     static boolean flag;
 
     DatabaseHelper helper = new DatabaseHelper(this);
@@ -39,28 +38,20 @@ public class Profile extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        name=(TextView)findViewById(R.id.prof_name);
-        pemail = (TextView)findViewById(R.id.prof_email);
 
+        name = (TextView)findViewById(R.id.prname);
         age=(TextView)findViewById(R.id.prage);
         height=(TextView)findViewById(R.id.prheight);
         weight=(TextView)findViewById(R.id.prweight);
         ldate=(TextView)findViewById(R.id.prdate);
         phone=(TextView)findViewById(R.id.prphone);
 
-        Prof_section = (LinearLayout)findViewById(R.id.prof_section);
-        Name = (TextView)findViewById(R.id.prof_name);
-        Email = (TextView)findViewById(R.id.prof_email);
-        Prof_pic = (ImageView)findViewById(R.id.prof_pic);
-
-        Prof_section.setVisibility(View.GONE);
-
-
-        Intent i = new Intent(this,MainActivity.class);
+        //Intent i = new Intent(this,MainActivity.class);
 
         //helper.get_info(String x, String y, String z);
 
         btnviewAll = (Button)findViewById(R.id.btn_change);
+        display = (Button)findViewById(R.id.btn_display);
         viewAll();
 
     }
@@ -77,37 +68,35 @@ public class Profile extends MainActivity {
 
     public void viewAll()
     {
-        btnviewAll.setOnClickListener(
-                new View.OnClickListener() {
+        //display.setOnClickListener(
+               new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Cursor res=  helper.get_info();
-                        if(res.getCount() == 0)
-                        {
-                            Toast.makeText(Profile.this,"No data Found",Toast.LENGTH_SHORT).show();
+                   public void onClick(View v) {
+                        Cursor res = helper.get_info();
+                        if (res.getCount() == 0) {
+                            Toast.makeText(Profile.this, "No data Found", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         StringBuffer buffer = new StringBuffer();
 
-                        while (res.moveToNext())
-                        {
+                        while (res.moveToNext()) {
                             name.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_NAME)));
 
-                            age.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_AGE))+"\n");
+                            age.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_AGE)) + "\n");
 
-                            height.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_HEIGHT))+"\n");
+                            height.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_HEIGHT)) + "\n");
 
-                            weight.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_WEIGHT))+"\n");
+                            weight.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_WEIGHT)) + "\n");
 
-                            ldate.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_LDATE))+"\n");
+                            ldate.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_LDATE)) + "\n");
 
-                            phone.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_PHONE))+"\n");
+                            phone.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_PHONE)) + "\n");
 
                         }
                         //show all data
                     }
-                }
-        );
+                };
+        //);
     }
 
     @Override

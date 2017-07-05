@@ -65,7 +65,7 @@
             android:textColor="#FFFFFF"
             android:background="#D13131"
             android:shadowColor="#FFFFFF"
-            android:onClick="onButtonClick"/>
+           />
 
         <Button android:id="@+id/bsignup"
             android:layout_width="fill_parent"

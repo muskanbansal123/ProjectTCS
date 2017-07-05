@@ -36,6 +36,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
+    Button login, signup;
+
     private Button Signout;
     private SignInButton SignIn;
 
@@ -65,13 +67,15 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
 
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
-    }
+
+        login = (Button) findViewById(R.id.blogin);
+        signup = (Button)findViewById(R.id.bsignup);
 
 
 
-    public void onButtonClick (View v)
-    {
-        if(v.getId() == R.id.blogin)
+
+        login.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View view)
         {
             EditText a = (EditText) findViewById(R.id.edemail);
             String str = a.getText().toString();
@@ -92,11 +96,11 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
             String password = helper.searchPass(str);
             if(pass.equals(password))
             {
-                Toast temp = Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT);
+                Toast temp = Toast.makeText(loginn.this, "Welcome", Toast.LENGTH_SHORT);
                 temp.show();
-                //Profile.flag=true;
+                Profile.flag=true;
 
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(loginn.this, MainActivity.class);
                 //intent.putExtra("1", st);
                 startActivity(intent);
 
@@ -105,20 +109,22 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
             else
             {
-                Toast temp = Toast.makeText(this, "Email address and password don't match", Toast.LENGTH_SHORT);
+                Toast temp = Toast.makeText(loginn.this, "Email address and password don't match", Toast.LENGTH_SHORT);
                 temp.show();
             }
 
         }
 
-        if (v.getId() == R.id.bsignup)
-        {
-            Intent i = new Intent(this, Signup.class);
-            startActivity(i);
-        }
+    });
+                signup.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view)
+                    {
 
-
-    }
+                        Intent i = new Intent(loginn.this, Signup.class);
+                        startActivity(i);
+                    }
+                }
+                );}
 
     @Override
     public void onBackPressed() {
@@ -127,6 +133,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     }
 
     @Override
+
+
     public void onClick(View v) {
 
         switch (v.getId())
@@ -134,8 +142,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
             case R.id.btn_google:
                 signIn();
 
-                Intent intent = new Intent(this, Profile.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(this, Profile.class);
+                startActivity(intent);*/
                 break;
 
             case R.id.btn_logout:
@@ -160,28 +168,33 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
    public void signOut()
     {
 
-     Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+     /*Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
          @Override
          public void onResult(@NonNull Status status) {
              updateUI(false);
 
             }
-        });
+        });*/
+
+
+
+
     }
     private void handleResult(GoogleSignInResult result)
     {
         if (result.isSuccess())
         {
             GoogleSignInAccount account = result.getSignInAccount();
-            String name = account.getDisplayName();
-            String email = account.getEmail();
-            String img_url = account.getPhotoUrl().toString();
 
+            Toast temp = Toast.makeText(loginn.this, "Welcome", Toast.LENGTH_SHORT);
+            temp.show();
 
-            Profile.Name.setText(name);
-            Profile.Email.setText(email);
-            Glide.with(this).load(img_url).into(Profile.Prof_pic);
+           Profile.flag = true;
             updateUI(true);
+
+            Intent intent = new Intent(loginn.this, MainActivity.class);
+            //intent.putExtra("1", st);
+            startActivity(intent);
         }
         else {
             updateUI(false);
@@ -193,11 +206,12 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
         if (isLogin)
         {
-            Profile.Prof_section.setVisibility(View.VISIBLE);
+            //Profile.Prof_section.setVisibility(View.VISIBLE);
+            Profile.flag = true;
         }
         else
         {
-            Profile.Prof_section.setVisibility(View.GONE);
+            //Profile.Prof_section.setVisibility(View.GONE);
         }
     }
 

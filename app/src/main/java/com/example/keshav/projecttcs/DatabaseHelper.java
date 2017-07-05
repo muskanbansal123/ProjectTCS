@@ -49,34 +49,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CREATE = "create table contacts(id integer primary key not null ," +
             "name text not null, email text not null, password text not null, city text not null, age text not null, pincode text not null, gender text not null, phone text not null);";
 
-    private static final String TABLE_CREATE_UPDATE = "create table updates( upd text primary key not null," +
+    private static final String TABLE_CREATE_UPDATE = "create table if not exists updates( upd integer primary key not null," +
             " height text not null, weight text not null, ldate text not null, uage text not null, uphone text not null);";
 
 
     public DatabaseHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        //context.deleteDatabase(DATABASE_NAME);
     }
+
+    /*public void Createdb(SQLiteDatabase db)
+    {
+        db.execSQL(TABLE_CREATE_UPDATE);
+        //this.db = db;
+    }*/
 
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
-        db.execSQL(TABLE_CREATE_UPDATE);
+       db.execSQL(TABLE_CREATE_UPDATE);
 
-        //this.db = db;
+        //Log.i("muskan"," db.execSQL(TABLE_CREATE_UPDATE)");
 
+       // this.db = db;
     }
-
 
     public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS" + TABLE_NAME;
         db.execSQL(query);
 
+        //onCreate(db);
 
-       // String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
-        //db.execSQL(query1);
+
+      String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
+        db.execSQL(query1);
+
+       // Createdb(db);
 
         onCreate(db);
+
     }
 
 
@@ -125,14 +137,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values1.put(COLUMN_UAGE, c1.getUage());
         values1.put(COLUMN_UPHONE, c1.getUphone());
         db.insert(TABLE_UPDATEDB, null, values1);
-        db.close();
+        //db.close();
     }
 
 
         public Cursor get_info()         //Cursor class provides random read write interface
         {
-           SQLiteDatabase db1 = this.getReadableDatabase();
-            Cursor res = db1.rawQuery("select * from "+TABLE_UPDATEDB, null);
+           SQLiteDatabase db = this.getReadableDatabase();
+            Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
 
          return res;
         /*db1 = this.getReadableDatabase();
