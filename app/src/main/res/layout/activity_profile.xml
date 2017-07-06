@@ -113,7 +113,7 @@
         android:id="@+id/prweight" />
 
     <TextView
-        android:text="Last Donated Date:"
+        android:text="Last  Date:"
         android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,7 +132,9 @@
         android:layout_alignBottom="@+id/pdate"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/prdate" />
+        android:id="@+id/prdate"
+        android:layout_alignLeft="@+id/prweight"
+        android:layout_alignStart="@+id/prweight" />
 
     <TextView
         android:text="Contact:"
@@ -163,21 +165,13 @@
         android:text="Change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/pdate"
-        android:layout_alignEnd="@+id/pdate"
         android:id="@+id/btn_change"
-        android:layout_below="@+id/prphone"
-        android:layout_marginTop="30sp"
-        android:onClick="onButtonClick"/>
+        android:layout_marginTop="45dp"
+        android:onClick="onButtonClick"
+        android:layout_below="@+id/pphone"
+        android:layout_toRightOf="@+id/pdate"
+        android:layout_toEndOf="@+id/pdate"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp" />
 
-    <Button
-        android:text="Display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/pdate"
-        android:layout_alignEnd="@+id/pdate"
-        android:id="@+id/btn_display"
-        android:layout_below="@+id/btn_change"
-        android:layout_marginTop="30sp"
-        android:onClick="onButtonClick"/>
 </RelativeLayout>

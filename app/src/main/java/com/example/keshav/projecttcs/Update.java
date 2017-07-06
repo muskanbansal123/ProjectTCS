@@ -76,6 +76,8 @@ public class Update extends MainActivity  {
                         Toast tem = Toast.makeText(Update.this, "Your profile has been updated!", Toast.LENGTH_SHORT);
                         tem.show();
 
+                       // Profile.viewAll();
+
 
 
                         Intent intent = new Intent(Update.this, MainActivity.class);
