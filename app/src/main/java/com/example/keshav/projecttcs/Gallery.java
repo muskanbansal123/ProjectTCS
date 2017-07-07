@@ -26,7 +26,7 @@ public class Gallery extends MainActivity {
 
 
         btnTakePhoto = (Button) findViewById(R.id.btn_camera);
-        imgTakePhoto = (ImageView) findViewById(R.id.imageview1);
+        imgTakePhoto = (ImageView) findViewById(R.id.imgView);
 
         if (!hasCamera())
 {

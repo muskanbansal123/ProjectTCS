@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 
 public class loginn extends MainActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    DatabaseHelper helper = new DatabaseHelper(this);
+    DatabaseHelper helper = new DatabaseHelper(loginn.this);
 
     Button login, signup;
 
