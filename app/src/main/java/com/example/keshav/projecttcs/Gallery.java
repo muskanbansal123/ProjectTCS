@@ -38,7 +38,7 @@ public class Gallery extends MainActivity {
 
     private boolean hasCamera()
     {
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);;
     }
 
     protected void onActivityResult(int requestCode,int resultCode, Intent data) {
