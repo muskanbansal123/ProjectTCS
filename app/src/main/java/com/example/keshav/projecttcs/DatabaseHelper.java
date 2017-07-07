@@ -113,6 +113,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PINCODE, c.getPincode());
 
         db.insert(TABLE_NAME, null, values);
+
+        //Profile.name.setText(cursor.getString(1));
         //db.close();
     }
 
@@ -145,6 +147,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         {
            SQLiteDatabase db = this.getReadableDatabase();
             Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
+
+           // Profile.age.setText(toString(COLUMN_AGE));
 
          return res;
         /*db1 = this.getReadableDatabase();

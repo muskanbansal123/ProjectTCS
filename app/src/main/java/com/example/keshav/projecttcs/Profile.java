@@ -23,7 +23,7 @@ import java.util.jar.Attributes;
 public class Profile extends MainActivity {
 
 
-    TextView name,age,height,weight,ldate,phone;
+    static TextView name,age,height,weight,ldate,phone;
     Button btnviewAll;
 
     Button display;
@@ -51,7 +51,7 @@ public class Profile extends MainActivity {
         //helper.get_info(String x, String y, String z);
 
         btnviewAll = (Button)findViewById(R.id.btn_change);
-        display = (Button)findViewById(R.id.btn_display);
+
         viewAll();
 
     }
@@ -69,10 +69,12 @@ public class Profile extends MainActivity {
     public void viewAll()
     {
         //display.setOnClickListener(
-               new View.OnClickListener() {
-                    @Override
-                   public void onClick(View v) {
+              // new View.OnClickListener() {
+                   // @Override
+                  // public void onClick(View v) {
                         Cursor res = helper.get_info();
+
+                        res.moveToFirst();
                         if (res.getCount() == 0) {
                             Toast.makeText(Profile.this, "No data Found", Toast.LENGTH_SHORT).show();
                             return;
@@ -80,22 +82,28 @@ public class Profile extends MainActivity {
                         StringBuffer buffer = new StringBuffer();
 
                         while (res.moveToNext()) {
-                            name.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_NAME)));
+                           //name.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_NAME)));
 
-                            age.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_AGE)) + "\n");
+                            age.setText(res.getString(4));
+                            height.setText(res.getString(1));
+                            weight.setText(res.getString(2));
+                            ldate.setText(res.getString(3));
+                            phone.setText(res.getString(5));
 
-                            height.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_HEIGHT)) + "\n");
+                           //age.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_AGE)));
 
-                            weight.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_WEIGHT)) + "\n");
+                            //height.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_HEIGHT)));
 
-                            ldate.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_LDATE)) + "\n");
+                            //weight.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_WEIGHT)));
 
-                            phone.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_PHONE)) + "\n");
+                            //ldate.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_LDATE)));
+
+                            //phone.setText(res.getString(res.getColumnIndex(DatabaseHelper.COLUMN_PHONE)));
 
                         }
                         //show all data
-                    }
-                };
+                   // }
+               // };
         //);
     }
 
