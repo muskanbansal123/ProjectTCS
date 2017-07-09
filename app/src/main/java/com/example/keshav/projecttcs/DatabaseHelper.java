@@ -161,8 +161,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String city1 = rp.strcity;
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'city1'", null);
-        //Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = "+city1+ "", null);
+        //Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = '"+city1+"'  ", null);
+       // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = ?", +city1+, null);
+
+       // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'Fbd' ", null);
+
+        String query = "SELECT * FROM contacts WHERE city = 'Fbd'";
+        Cursor don = db.rawQuery(query,null);
+
         //Toast.makeText(DatabaseHelper.this,"city is" +city1, Toast.LENGTH_SHORT).show();
         Log.d("city1: "+city1, "city taken");
         return don;
