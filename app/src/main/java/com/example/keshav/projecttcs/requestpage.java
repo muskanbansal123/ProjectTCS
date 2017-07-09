@@ -16,12 +16,16 @@ import android.widget.Toast;
 
 public class requestpage extends MainActivity  {
 
-    Button request = (Button) findViewById(R.id.btn_request);
+    Button request,dlist;
+    EditText city;
+    static String strcity;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_request);
-
+        request = (Button) findViewById(R.id.btn_request);
+        city = (EditText) findViewById(R.id.editText_city);
+        dlist = (Button) findViewById(R.id.btn_display_list);
 
         request.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +62,26 @@ public class requestpage extends MainActivity  {
                     t.show();
 
                 } else {
-                    Toast t = Toast.makeText(requestpage.this, "You made a request, Press back button", Toast.LENGTH_SHORT);
+                    Toast t = Toast.makeText(requestpage.this, "You made a request", Toast.LENGTH_SHORT);
                     t.show();
                 }
 
             }
         });
+
+        dlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+
+            {
+                Intent intent = new Intent(requestpage.this,DonorList.class);
+                startActivity(intent);
+            }
+
+        });
     }
-@Override
+
+    @Override
     public void onBackPressed() {
         startActivity(new Intent(requestpage.this,MainActivity.class));
         super.onBackPressed();

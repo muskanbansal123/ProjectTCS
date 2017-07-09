@@ -73,6 +73,11 @@
         </activity>
 
 
+        <activity android:name=".DonorList"
+            android:label="Project TCS"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
 
 
     </application>

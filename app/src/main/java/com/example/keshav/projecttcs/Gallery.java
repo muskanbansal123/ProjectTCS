@@ -8,19 +8,23 @@ package com.example.keshav.projecttcs;
         import android.support.design.widget.CoordinatorLayout;
         import android.support.design.widget.FloatingActionButton;
         import android.support.design.widget.Snackbar;
-        import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.AppCompatImageView;
         import android.support.v7.widget.Toolbar;
         import android.util.Log;
         import android.view.View;
+        import android.widget.Button;
+        import android.content.pm.PackageManager;
+        import static android.support.v4.app.ActivityCompat.startActivityForResult;
+        import android.graphics.Bitmap;
+        import android.widget.ImageView;
 
         import java.io.IOException;
         import java.io.InputStream;
 
-public class Gallery extends AppCompatActivity implements View.OnClickListener {
+public class Gallery extends MainActivity {
 
     private static final int SELECT_PICTURE = 100;
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "Gallery";
 
     CoordinatorLayout coordinatorLayout;
     FloatingActionButton btnSelectImage;
@@ -31,7 +35,7 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_gallery);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,8 +43,6 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         btnSelectImage = (FloatingActionButton) findViewById(R.id.btnSelectImage);
         imgView = (AppCompatImageView) findViewById(R.id.imgView);
-
-        btnSelectImage.setOnClickListener(this);
 
         // Create the Database helper object
         dbHelper = new DBHelper(this);
@@ -60,6 +62,8 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
     }
+
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -88,11 +92,6 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
 
             }
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        openImageChooser();
     }
 
     // Save the

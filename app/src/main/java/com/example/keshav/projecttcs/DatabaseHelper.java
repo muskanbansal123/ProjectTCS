@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import static android.R.attr.y;
 
@@ -70,9 +72,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_CREATE);
        db.execSQL(TABLE_CREATE_UPDATE);
 
-        //Log.i("muskan"," db.execSQL(TABLE_CREATE_UPDATE)");
-
-       // this.db = db;
     }
 
     public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -151,24 +150,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
            // Profile.age.setText(toString(COLUMN_AGE));
 
          return res;
-        /*db1 = this.getReadableDatabase();
 
-        String query1 = "select height, weight, ldate from "+TABLE_UPDATEDB;
-        Cursor cursor1 = db1.rawQuery(query1,null);
+    }
 
-        String h,w,d = null;
-        h = "empty";
-        while (cursor1.moveToNext()) {
+    public Cursor get_city()
+    {
+        requestpage rp = new requestpage();
+        //EditText cityy = rp.city;
+        //String city1 = cityy.getText().toString();
+        String city1 = rp.strcity;
+        SQLiteDatabase db = this.getReadableDatabase();
 
-            h = cursor1.getString(cursor1.getColumnIndex(COLUMN_HEIGHT));
-            w = cursor1.getString(cursor1.getColumnIndex(COLUMN_WEIGHT));
-            d = cursor1.getString(cursor1.getColumnIndex(COLUMN_LDATE));
-
-            //return profile;
-            //return h,w,d;
-        }
-
-        return h;*/
+        Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'city1'", null);
+        //Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = "+city1+ "", null);
+        //Toast.makeText(DatabaseHelper.this,"city is" +city1, Toast.LENGTH_SHORT).show();
+        Log.d("city1: "+city1, "city taken");
+        return don;
     }
     public String searchPass(String email)
     {

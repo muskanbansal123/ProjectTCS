@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,7 +32,7 @@
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="493dp"
             android:layout_margin="@dimen/activity_horizontal_margin" />
 
         <android.support.design.widget.FloatingActionButton
@@ -42,20 +43,20 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@android:drawable/ic_menu_gallery" />
 
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="150sp"
+            android:layout_marginTop="540sp"
+            android:background="@drawable/camera"
+            android:onClick="onButtonClick"
+            app:layout_anchor="@+id/imgView" />
+
+
     </android.support.design.widget.CoordinatorLayout>
-
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
-        android:id="@+id/btn_camera"
-        android:background="@drawable/camera"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onButtonClick"
-        android:layout_marginLeft="120sp"/>
 
 
 </LinearLayout>
