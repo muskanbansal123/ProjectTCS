@@ -1,31 +1,28 @@
 package com.example.keshav.projecttcs;
 
 
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.os.Handler;
-        import android.support.design.widget.CoordinatorLayout;
-        import android.support.design.widget.FloatingActionButton;
-        import android.support.design.widget.Snackbar;
-        import android.support.v7.widget.AppCompatImageView;
-        import android.support.v7.widget.Toolbar;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.content.pm.PackageManager;
-        import static android.support.v4.app.ActivityCompat.startActivityForResult;
-        import android.graphics.Bitmap;
-        import android.widget.ImageView;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.content.pm.PackageManager;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 
-        import java.io.IOException;
-        import java.io.InputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class Gallery extends MainActivity {
+public class Gallery extends MainActivity implements View.OnClickListener {
 
     private static final int SELECT_PICTURE = 100;
-    private static final String TAG = "Gallery";
-
+    private static final String TAG = "MainActivity";
+    private static final int CAM_REQUEST = 1313;
     CoordinatorLayout coordinatorLayout;
     FloatingActionButton btnSelectImage;
     AppCompatImageView imgView;
@@ -44,10 +41,17 @@ public class Gallery extends MainActivity {
         btnSelectImage = (FloatingActionButton) findViewById(R.id.btnSelectImage);
         imgView = (AppCompatImageView) findViewById(R.id.imgView);
 
+        btnSelectImage.setOnClickListener(this);
+
         // Create the Database helper object
         dbHelper = new DBHelper(this);
 
     }
+    private boolean hasCamera()
+    {
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    }
+
 
     // Show simple message using SnackBar
     void showMessage(String message) {
@@ -62,8 +66,6 @@ public class Gallery extends MainActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
     }
-
-
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -94,6 +96,11 @@ public class Gallery extends MainActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        openImageChooser();
+    }
+
     // Save the
     Boolean saveImageInDB(Uri selectedImageUri) {
 
@@ -108,6 +115,14 @@ public class Gallery extends MainActivity {
             Log.e(TAG, "<saveImageInDB> Error : " + ioe.getLocalizedMessage());
             dbHelper.close();
             return false;
+        }
+
+    }
+    public void onButtonClick(View v)
+    {
+        if (v.getId() == R.id.btn_camera) {
+            Intent cameraintent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraintent, CAM_REQUEST);
         }
 
     }

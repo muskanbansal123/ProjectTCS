@@ -169,7 +169,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM contacts WHERE city = 'Fbd'";
         Cursor don = db.rawQuery(query,null);
 
-        //Toast.makeText(DatabaseHelper.this,"city is" +city1, Toast.LENGTH_SHORT).show();
         Log.d("city1: "+city1, "city taken");
         return don;
     }

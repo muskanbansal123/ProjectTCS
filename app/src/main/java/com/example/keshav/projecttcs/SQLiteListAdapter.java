@@ -79,7 +79,7 @@ public class SQLiteListAdapter extends BaseAdapter {
 
             holder = (Holder) convertView.getTag();
         }
-        holder.textviewid.setText(userID.get(position));
+        //holder.textviewid.setText(userID.get(position));
         holder.textviewname.setText(UserName.get(position));
         holder.textviewphone_number.setText(User_PhoneNumber.get(position));
         holder.textviewsubject.setText(UserCity.get(position));
@@ -88,7 +88,7 @@ public class SQLiteListAdapter extends BaseAdapter {
     }
 
     public class Holder {
-        TextView textviewid;
+       // TextView textviewid;
         TextView textviewname;
         TextView textviewphone_number;
         TextView textviewsubject;

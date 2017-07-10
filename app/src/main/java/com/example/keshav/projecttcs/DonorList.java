@@ -70,17 +70,25 @@ public class DonorList extends MainActivity {
         Cursor don = helper.get_city();
 
 
-        if (don.moveToFirst()) {
-            do {
+        don.moveToFirst();
+        if(don.getCount()==0) {
+
+            Toast.makeText(DonorList.this, "No data Found", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+        while (don.moveToNext())  {
                 //ID_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
 
-                NAME_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME)));
+                NAME_ArrayList.add(don.getString(1));
+                PHONE_NUMBER_ArrayList.add(don.getString(8));
+                SUBJECT_ArrayList.add(don.getString(4));
 
-                PHONE_NUMBER_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE)));
+                //PHONE_NUMBER_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE)));
 
-                SUBJECT_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CITY)));
+                //SUBJECT_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CITY)));
 
-            } while (cursor.moveToNext());
+
         }
 
         ListAdapter = new SQLiteListAdapter(DonorList.this,
