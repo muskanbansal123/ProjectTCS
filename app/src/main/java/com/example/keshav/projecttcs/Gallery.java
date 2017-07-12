@@ -141,4 +141,11 @@ public class Gallery extends MainActivity implements View.OnClickListener {
             return false;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+        super.onBackPressed();
+    }
+
 }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class DonorList extends MainActivity {
 
     DatabaseHelper helper = new DatabaseHelper(this);
-    TextView donorname;
+    //TextView donorname;
 
     Cursor cursor;
     SQLiteListAdapter ListAdapter ;
@@ -27,7 +27,7 @@ public class DonorList extends MainActivity {
     ArrayList<String> ID_ArrayList = new ArrayList<String>();
     ArrayList<String> NAME_ArrayList = new ArrayList<String>();
     ArrayList<String> PHONE_NUMBER_ArrayList = new ArrayList<String>();
-    ArrayList<String> SUBJECT_ArrayList = new ArrayList<String>();
+    ArrayList<String> CITY_ArrayList = new ArrayList<String>();
     ListView LISTVIEW;
 
 
@@ -44,13 +44,13 @@ public class DonorList extends MainActivity {
         ShowSQLiteDBdata();
     }
 
-    @Override
+    /*@Override
     protected void onResume() {
 
         ShowSQLiteDBdata() ;
 
         super.onResume();
-    }
+    }*/
 
     private void ShowSQLiteDBdata() {
 
@@ -65,7 +65,7 @@ public class DonorList extends MainActivity {
         ID_ArrayList.clear();
         NAME_ArrayList.clear();
         PHONE_NUMBER_ArrayList.clear();
-        SUBJECT_ArrayList.clear();
+        CITY_ArrayList.clear();
 
         Cursor don = helper.get_city();
 
@@ -78,11 +78,11 @@ public class DonorList extends MainActivity {
 
         }
         while (don.moveToNext())  {
-                //ID_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
+                ID_ArrayList.add(cursor.getString(0));
 
                 NAME_ArrayList.add(don.getString(1));
                 PHONE_NUMBER_ArrayList.add(don.getString(8));
-                SUBJECT_ArrayList.add(don.getString(4));
+                CITY_ArrayList.add(don.getString(4));
 
                 //PHONE_NUMBER_ArrayList.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE)));
 
@@ -93,11 +93,10 @@ public class DonorList extends MainActivity {
 
         ListAdapter = new SQLiteListAdapter(DonorList.this,
 
-
-               // ID_ArrayList,
+                ID_ArrayList,
                 NAME_ArrayList,
                 PHONE_NUMBER_ArrayList,
-                SUBJECT_ArrayList
+                CITY_ArrayList
 
         );
 

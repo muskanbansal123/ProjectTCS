@@ -13,6 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInApi;
@@ -37,6 +43,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     DatabaseHelper helper = new DatabaseHelper(loginn.this);
 
     Button login, signup;
+    LoginButton loginButton;
+    CallbackManager callbackManager;
 
     private Button Signout;
     private SignInButton SignIn;
@@ -46,16 +54,17 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     private static final int REQ_CODE = 9001;
 
 
-
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_loginn);
 
-        EditText a = (EditText) findViewById(R.id.edemail);
+         EditText a = (EditText) findViewById(R.id.edemail);
         String str = a.getText().toString();
 
         EditText b = (EditText) findViewById(R.id.edpassword);
         String pass = b.getText().toString();
+
 
         SignIn = (SignInButton)findViewById(R.id.btn_google);
         Signout = (Button)findViewById(R.id.btn_logout);
@@ -70,7 +79,29 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
         login = (Button) findViewById(R.id.blogin);
         signup = (Button)findViewById(R.id.bsignup);
+        loginButton = (Button)findViewById(R.id.fb_login_bn);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
 
+                Intent intent = new Intent(loginn.this, MainActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancel() {
+
+                Toast temp = Toast.makeText(loginn.this, "Login Cancelled", Toast.LENGTH_SHORT);
+                temp.show();
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
 
 
@@ -115,7 +146,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
         }
 
-    });
+        });
                 signup.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view)
                     {
@@ -124,7 +155,9 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
                         startActivity(i);
                     }
                 }
-                );}
+                );
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -226,6 +259,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
              handleResult(result);
         }
+
+        callbackManager.onActivityResult(requestCode,resultCode,data);
     }
 
     /*public void signOut()
@@ -238,4 +273,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     });
     }*/
+
+
+
 }
+

@@ -7,6 +7,28 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="ID = "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#050505" />
+
+    <TextView
+        android:id="@+id/textViewID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="UserID"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#050505" />
+
+
 
 
     <TextView
@@ -15,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:text="Name = "
+        android:layout_below="@+id/textView1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#050505" />
 
@@ -24,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textView2"
         android:text="Name"
+        android:layout_below="@+id/textViewID"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#050505" />
 
@@ -58,7 +82,7 @@
         android:textColor="#050505" />
 
     <TextView
-        android:id="@+id/textViewSUBJECT"
+        android:id="@+id/textViewCITY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView4"

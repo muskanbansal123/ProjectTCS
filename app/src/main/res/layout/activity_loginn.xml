@@ -92,11 +92,14 @@
         </com.google.android.gms.common.SignInButton>
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/btn_logout"
-            android:text="logout"/>
+       <com.facebook.login.widget.LoginButton
+           android:layout_width="338dp"
+           android:layout_height="wrap_content"
+           android:id="@+id/fb_login_bn"
+           android:gravity="center"
+           android:textSize="16sp"
+           android:layout_marginTop="5sp"
+           />
 
 
     </LinearLayout>

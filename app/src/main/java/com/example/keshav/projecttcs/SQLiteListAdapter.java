@@ -25,7 +25,7 @@ public class SQLiteListAdapter extends BaseAdapter {
 
     public SQLiteListAdapter(
             Context context2,
-            //ArrayList<String> id,
+            ArrayList<String> id,
             ArrayList<String> name,
             ArrayList<String> phone,
             ArrayList<String> city
@@ -33,7 +33,7 @@ public class SQLiteListAdapter extends BaseAdapter {
     {
 
         this.context = context2;
-        //this.userID = id;
+        this.userID = id;
         this.UserName = name;
         this.User_PhoneNumber = phone;
         this.UserCity = city ;
@@ -41,7 +41,7 @@ public class SQLiteListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return userID.size();
     }
 
     @Override
@@ -68,10 +68,10 @@ public class SQLiteListAdapter extends BaseAdapter {
 
             holder = new Holder();
 
-            //holder.textviewid = (TextView) child.findViewById(R.id.textViewID);
+            holder.textviewid = (TextView) convertView.findViewById(R.id.textViewID);
             holder.textviewname = (TextView) convertView.findViewById(R.id.textViewNAME);
             holder.textviewphone_number = (TextView) convertView.findViewById(R.id.textViewPHONE_NUMBER);
-            holder.textviewsubject = (TextView) convertView.findViewById(R.id.textViewSUBJECT);
+            holder.textviewcity = (TextView) convertView.findViewById(R.id.textViewCITY);
 
             convertView.setTag(holder);
 
@@ -79,19 +79,23 @@ public class SQLiteListAdapter extends BaseAdapter {
 
             holder = (Holder) convertView.getTag();
         }
-        //holder.textviewid.setText(userID.get(position));
+        holder.textviewid.setText(userID.get(position));
+
+        //holder.textviewname.setText();
+
+
         holder.textviewname.setText(UserName.get(position));
         holder.textviewphone_number.setText(User_PhoneNumber.get(position));
-        holder.textviewsubject.setText(UserCity.get(position));
+        holder.textviewcity.setText(UserCity.get(position));
 
         return convertView;
     }
 
     public class Holder {
-       // TextView textviewid;
+        TextView textviewid;
         TextView textviewname;
         TextView textviewphone_number;
-        TextView textviewsubject;
+        TextView textviewcity;
     }
 
 }

@@ -166,8 +166,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
        // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'Fbd' ", null);
 
-        String query = "SELECT * FROM contacts WHERE city = 'Fbd'";
-        Cursor don = db.rawQuery(query,null);
+        String query2 = "SELECT * FROM contacts WHERE city = 'Fbd'";
+        Cursor don = db.rawQuery(query2,null);
 
         Log.d("city1: "+city1, "city taken");
         return don;
