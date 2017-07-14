@@ -65,6 +65,11 @@ public class Profile extends MainActivity {
     public void viewAll()
     {
 
+        age.setText("");
+        height.setText("");
+        weight.setText("");
+        ldate.setText("");
+        phone.setText("");
         Cursor res = helper.get_info();
             res.moveToFirst();
 

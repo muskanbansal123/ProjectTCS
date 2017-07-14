@@ -145,9 +145,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public Cursor get_info()         //Cursor class provides random read write interface
         {
            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
 
-           // Profile.age.setText(toString(COLUMN_AGE));
+            Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+            cursor.moveToFirst();
+            Profile.name.setText(cursor.getString(1));
+
+            Profile.age.setText(cursor.getString(5));
+
+            Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
 
          return res;
 

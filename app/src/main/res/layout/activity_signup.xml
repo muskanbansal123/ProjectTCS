@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E58B8B">
 
     <LinearLayout
@@ -54,8 +54,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/input_password"
+        android:layout_marginBottom="8dp"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

@@ -46,7 +46,6 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     LoginButton loginButton;
     CallbackManager callbackManager;
 
-    private Button Signout;
     private SignInButton SignIn;
 
    // private TextView
@@ -56,6 +55,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_loginn);
 
@@ -67,9 +67,6 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
 
         SignIn = (SignInButton)findViewById(R.id.btn_google);
-        Signout = (Button)findViewById(R.id.btn_logout);
-
-        Signout.setOnClickListener(this);
 
         SignIn.setOnClickListener(this);
 
@@ -79,11 +76,16 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
         login = (Button) findViewById(R.id.blogin);
         signup = (Button)findViewById(R.id.bsignup);
-        loginButton = (Button)findViewById(R.id.fb_login_bn);
+        loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
         callbackManager = CallbackManager.Factory.create();
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
+                Toast temp = Toast.makeText(loginn.this, "Welcome", Toast.LENGTH_SHORT);
+                temp.show();
+                Profile.flag=true;
+
 
                 Intent intent = new Intent(loginn.this, MainActivity.class);
                 startActivity(intent);
@@ -179,9 +181,6 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
                 startActivity(intent);*/
                 break;
 
-            case R.id.btn_logout:
-                signOut();
-                break;
         }
 
     }
@@ -198,21 +197,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     }
 
-   public void signOut()
-    {
 
-     /*Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-         @Override
-         public void onResult(@NonNull Status status) {
-             updateUI(false);
-
-            }
-        });*/
-
-
-
-
-    }
     private void handleResult(GoogleSignInResult result)
     {
         if (result.isSuccess())
@@ -223,6 +208,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
             temp.show();
 
            Profile.flag = true;
+
             updateUI(true);
 
             Intent intent = new Intent(loginn.this, MainActivity.class);
