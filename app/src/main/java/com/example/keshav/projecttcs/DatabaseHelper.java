@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import static android.R.attr.y;
 
@@ -70,9 +72,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_CREATE);
        db.execSQL(TABLE_CREATE_UPDATE);
 
-        //Log.i("muskan"," db.execSQL(TABLE_CREATE_UPDATE)");
-
-       // this.db = db;
     }
 
     public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -146,29 +145,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public Cursor get_info()         //Cursor class provides random read write interface
         {
            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+            cursor.moveToFirst();
+            Profile.name.setText(cursor.getString(1));
+
+            Profile.age.setText(cursor.getString(5));
+
             Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
 
-           // Profile.age.setText(toString(COLUMN_AGE));
-
          return res;
-        /*db1 = this.getReadableDatabase();
 
-        String query1 = "select height, weight, ldate from "+TABLE_UPDATEDB;
-        Cursor cursor1 = db1.rawQuery(query1,null);
+    }
 
-        String h,w,d = null;
-        h = "empty";
-        while (cursor1.moveToNext()) {
+    public Cursor get_city()
+    {
+        requestpage rp = new requestpage();
+        //EditText cityy = rp.city;
+        //String city1 = cityy.getText().toString();
+        String city1 = rp.strcity;
+        SQLiteDatabase db = this.getReadableDatabase();
 
-            h = cursor1.getString(cursor1.getColumnIndex(COLUMN_HEIGHT));
-            w = cursor1.getString(cursor1.getColumnIndex(COLUMN_WEIGHT));
-            d = cursor1.getString(cursor1.getColumnIndex(COLUMN_LDATE));
+        //Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = '"+city1+"'  ", null);
+       // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = ?", +city1+, null);
 
-            //return profile;
-            //return h,w,d;
-        }
+       // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'Fbd' ", null);
 
-        return h;*/
+        String query2 = "SELECT * FROM contacts WHERE city = 'Fbd'";
+        Cursor don = db.rawQuery(query2,null);
+
+        Log.d("city1: "+city1, "city taken");
+        return don;
     }
     public String searchPass(String email)
     {

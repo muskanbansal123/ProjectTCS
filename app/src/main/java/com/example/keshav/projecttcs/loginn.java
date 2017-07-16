@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInApi;
@@ -32,13 +39,14 @@ import java.util.regex.Pattern;
  * Created by keshav on 19-06-2017.
  */
 
-public class loginn extends MainActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class loginn extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     DatabaseHelper helper = new DatabaseHelper(loginn.this);
 
     Button login, signup;
+    LoginButton loginButton;
+    CallbackManager callbackManager;
 
-    private Button Signout;
     private SignInButton SignIn;
 
    // private TextView
@@ -46,21 +54,20 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     private static final int REQ_CODE = 9001;
 
 
-
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_loginn);
 
-        EditText a = (EditText) findViewById(R.id.edemail);
+         EditText a = (EditText) findViewById(R.id.edemail);
         String str = a.getText().toString();
 
         EditText b = (EditText) findViewById(R.id.edpassword);
         String pass = b.getText().toString();
 
-        SignIn = (SignInButton)findViewById(R.id.btn_google);
-        Signout = (Button)findViewById(R.id.btn_logout);
 
-        Signout.setOnClickListener(this);
+        SignIn = (SignInButton)findViewById(R.id.btn_google);
 
         SignIn.setOnClickListener(this);
 
@@ -70,7 +77,34 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
         login = (Button) findViewById(R.id.blogin);
         signup = (Button)findViewById(R.id.bsignup);
+        loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
 
+                Toast temp = Toast.makeText(loginn.this, "Welcome", Toast.LENGTH_SHORT);
+                temp.show();
+                Profile.flag=true;
+
+
+                Intent intent = new Intent(loginn.this, MainActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancel() {
+
+                Toast temp = Toast.makeText(loginn.this, "Login Cancelled", Toast.LENGTH_SHORT);
+                temp.show();
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
 
 
@@ -115,7 +149,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
         }
 
-    });
+        });
                 signup.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view)
                     {
@@ -124,18 +158,11 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
                         startActivity(i);
                     }
                 }
-                );}
-
-    @Override
-    public void onBackPressed() {
-       startActivity(new Intent(loginn.this,MainActivity.class));
-        super.onBackPressed();
+                );
     }
 
-    @Override
 
-
-    public void onClick(View v) {
+        public void onClick(View v) {
 
         switch (v.getId())
         {
@@ -146,9 +173,6 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
                 startActivity(intent);*/
                 break;
 
-            case R.id.btn_logout:
-                signOut();
-                break;
         }
 
     }
@@ -165,21 +189,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     }
 
-   public void signOut()
-    {
 
-     /*Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-         @Override
-         public void onResult(@NonNull Status status) {
-             updateUI(false);
-
-            }
-        });*/
-
-
-
-
-    }
     private void handleResult(GoogleSignInResult result)
     {
         if (result.isSuccess())
@@ -190,6 +200,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
             temp.show();
 
            Profile.flag = true;
+
             updateUI(true);
 
             Intent intent = new Intent(loginn.this, MainActivity.class);
@@ -226,6 +237,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
              handleResult(result);
         }
+
+        callbackManager.onActivityResult(requestCode,resultCode,data);
     }
 
     /*public void signOut()
@@ -238,4 +251,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     });
     }*/
+
+
+
 }
+

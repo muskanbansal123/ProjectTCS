@@ -3,6 +3,7 @@ package com.example.keshav.projecttcs;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 
 public class Splashscreen extends AppCompatActivity {
 
@@ -10,28 +11,14 @@ public class Splashscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
-
-        Thread myThread = new Thread() {
-
+        new  Handler().postDelayed(new Runnable() {
+            @Override
             public void run() {
-                try {
-                    sleep(3000);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
 
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-
-                    Intent openStartingPoint = new Intent(Splashscreen.this, MainActivity.class);
-                    startActivity(openStartingPoint);
-                    finish();
-                }
             }
+        },3000);
 
-        };
-        myThread.start();
     }
 }

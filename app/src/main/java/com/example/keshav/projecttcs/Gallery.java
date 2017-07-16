@@ -41,8 +41,6 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
         btnSelectImage = (FloatingActionButton) findViewById(R.id.btnSelectImage);
         imgView = (AppCompatImageView) findViewById(R.id.imgView);
 
-        btnSelectImage.setOnClickListener(this);
-
         // Create the Database helper object
         dbHelper = new DBHelper(this);
 
@@ -97,8 +95,7 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        openImageChooser();
+    public void onClick(View v) {openImageChooser();
     }
 
     // Save the
@@ -141,4 +138,11 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+        super.onBackPressed();
+    }
+
 }
