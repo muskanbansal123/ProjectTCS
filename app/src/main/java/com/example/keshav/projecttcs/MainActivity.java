@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+       // drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -119,10 +119,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
-            return true;
+            Toast.makeText(getApplicationContext(),"You are already on home",Toast.LENGTH_SHORT).show();
         }
         else if (id == R.id.nav_account) {
 
@@ -149,8 +146,11 @@ public class MainActivity extends AppCompatActivity
 
             Intent inte = new Intent(MainActivity.this, Gallery.class);
             startActivity(inte);
+            return true;
 
         } else if (id == R.id.nav_manage) {
+
+            startActivity(new Intent(MainActivity.this,MapsActivity.class));
 
         }else if (id == R.id.nav_req) {
 

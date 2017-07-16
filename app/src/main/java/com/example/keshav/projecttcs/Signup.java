@@ -2,6 +2,7 @@ package com.example.keshav.projecttcs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.Menu;
@@ -17,7 +18,7 @@ import java.util.regex.Pattern;
  * Created by keshav on 21-06-2017.
  */
 
-public class Signup extends MainActivity {
+public class Signup extends AppCompatActivity {
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
@@ -173,12 +174,6 @@ public class Signup extends MainActivity {
              i.putExtra()
          }
      }*/
-
-
-    public void onBackPressed() {
-        startActivity(new Intent(Signup.this, MainActivity.class));
-        super.onBackPressed();
-    }
 
     public boolean isValidEmail(String email) {
 
