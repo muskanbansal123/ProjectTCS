@@ -4,7 +4,6 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
-
     android:background="#E58B8B">
 
     <LinearLayout

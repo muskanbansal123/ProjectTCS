@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+        android:id="@+id/llayout">
 
 
     <ImageView android:src="@drawable/bloodlogo"
@@ -55,8 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleDrawable="@drawable/icon_selector">
+        >
 
         <EditText
             android:id="@+id/input_password"
@@ -66,21 +66,22 @@
             android:hint="Password"/>
     </android.support.design.widget.TextInputLayout>
 
+        <!-- Confirm Password Label -->
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
 
-        </android.support.design.widget.TextInputLayout>
-
-
-        <!-- Age Label -->
-        <EditText android:id="@+id/input_confirmpassword"
+             <EditText android:id="@+id/input_confirmpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="Confirm Password"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Gender Label -->
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -94,6 +95,8 @@
                 android:hint="Gender" />
         </android.support.design.widget.TextInputLayout>
 
+        <!-- Age Label -->
+
         <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,6 +109,8 @@
             android:hint="Age" />
     </android.support.design.widget.TextInputLayout>
 
+        <!-- Contact Label -->
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,7 +119,7 @@
             <EditText android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:inputType="numberDecimal"
                 android:hint="Contact" />
         </android.support.design.widget.TextInputLayout>
 
@@ -142,7 +147,7 @@
         <EditText android:id="@+id/input_Pincode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
+            android:inputType="numberDecimal"
             android:hint="Pincode" />
     </android.support.design.widget.TextInputLayout>
 
