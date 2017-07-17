@@ -5,6 +5,7 @@ package com.example.keshav.projecttcs;
         import android.net.Uri;
         import android.os.Bundle;
         import android.os.Handler;
+        import android.content.pm.PackageManager;
         import android.support.design.widget.CoordinatorLayout;
         import android.support.design.widget.FloatingActionButton;
         import android.support.design.widget.Snackbar;
@@ -21,7 +22,7 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
 
     private static final int SELECT_PICTURE = 100;
     private static final String TAG = "MainActivity";
-
+    private static final int CAM_REQUEST = 1313;
     CoordinatorLayout coordinatorLayout;
     FloatingActionButton btnSelectImage;
     AppCompatImageView imgView;
@@ -44,6 +45,11 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
         dbHelper = new DBHelper(this);
 
     }
+
+    private boolean hasCamera() {
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    }
+
 
     // Show simple message using SnackBar
     void showMessage(String message) {
@@ -106,6 +112,14 @@ public class Gallery extends AppCompatActivity implements View.OnClickListener {
             Log.e(TAG, "<saveImageInDB> Error : " + ioe.getLocalizedMessage());
             dbHelper.close();
             return false;
+        }
+
+    }
+
+    public void onButtonClick(View v) {
+        if (v.getId() == R.id.btn_camera) {
+            Intent cameraintent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraintent, CAM_REQUEST);
         }
 
     }
