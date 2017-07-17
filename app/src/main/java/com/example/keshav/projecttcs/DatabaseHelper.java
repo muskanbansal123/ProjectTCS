@@ -9,6 +9,9 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.R.attr.y;
 
 /**
@@ -44,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_UPHONE = "uphone";
 
 
-   static SQLiteDatabase db;
+    static SQLiteDatabase db;
 
     //write query
 
@@ -70,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
-       db.execSQL(TABLE_CREATE_UPDATE);
+        db.execSQL(TABLE_CREATE_UPDATE);
 
     }
 
@@ -81,10 +84,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //onCreate(db);
 
 
-      String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
+        String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
         db.execSQL(query1);
 
-       // Createdb(db);
+        // Createdb(db);
 
         onCreate(db);
 
@@ -142,19 +145,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-        public Cursor get_info()         //Cursor class provides random read write interface
+    public Cursor get_info()         //Cursor class provides random read write interface
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+        cursor.moveToFirst();
+        int m;
+        m=0;
+
+        while (loginn.str.equals(a))
         {
-           SQLiteDatabase db = this.getReadableDatabase();
+            m = m+1;
+        }
 
-            Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
-            cursor.moveToFirst();
-            Profile.name.setText(cursor.getString(1));
+       cursor.moveToPosition(m);
 
-            Profile.age.setText(cursor.getString(5));
 
-            Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
+        Profile.name.setText(cursor.getString(1));
 
-         return res;
+        Profile.age.setText(cursor.getString(5));
+
+        Cursor res = db.rawQuery("select * from "+TABLE_UPDATEDB, null);
+
+        return res;
 
     }
 
@@ -167,9 +181,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = '"+city1+"'  ", null);
-       // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = ?", +city1+, null);
+        // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = ?", +city1+, null);
 
-       // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'Fbd' ", null);
+        // Cursor don = db.rawQuery("SELECT * FROM contacts WHERE city = 'Fbd' ", null);
 
         String query2 = "SELECT * FROM contacts WHERE city = 'Fbd'";
         Cursor don = db.rawQuery(query2,null);
@@ -177,13 +191,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("city1: "+city1, "city taken");
         return don;
     }
+
+
+
+    public List<Contact> getAllBeneficiary() {
+        // array of columns to fetch
+        String[] columns = {
+                //BeneficiaryContract.BeneficiaryEntry._ID,
+                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME,
+                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL,
+                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_ADDRESS,
+                //BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_COUNTRY
+        };
+        // sorting orders
+        String sortOrder =
+                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME + " ASC";
+        List<Contact> beneficiaryList = new ArrayList<Contact>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        /*Cursor cursor = db.query(BeneficiaryContract.BeneficiaryEntry.TABLE_NAME, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order*/
+
+
+        String query1 = "select * from contacts";
+
+        //SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query1,null);
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Contact beneficiary = new Contact();
+                //beneficiary.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry._ID))));
+                beneficiary.setName(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME)));
+                beneficiary.setEmail_add(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL)));
+                beneficiary.setCity(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_ADDRESS)));
+                //beneficiary.setCountry(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_COUNTRY)));
+                // Adding user record to list
+                beneficiaryList.add(beneficiary);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return beneficiaryList;
+    }
+
+
+
+    public static String a,b;
     public String searchPass(String email)
     {
         db = this.getWritableDatabase();
         String query = "select email, password from "+TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
 
-        String a,b = null;
+        //String a,b = null;
         b = "not found";
         if (cursor.moveToFirst())
         {

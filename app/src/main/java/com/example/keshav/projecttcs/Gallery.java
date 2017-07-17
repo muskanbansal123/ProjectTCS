@@ -1,148 +1,185 @@
 package com.example.keshav.projecttcs;
 
+/**
+ * Created by Shivani on 16-07-2017.
+ */
 
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.os.Handler;
-        import android.content.pm.PackageManager;
-        import android.support.design.widget.CoordinatorLayout;
-        import android.support.design.widget.FloatingActionButton;
-        import android.support.design.widget.Snackbar;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.AppCompatImageView;
-        import android.support.v7.widget.Toolbar;
-        import android.util.Log;
-        import android.view.View;
 
-        import java.io.IOException;
-        import java.io.InputStream;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class Gallery extends AppCompatActivity implements View.OnClickListener {
+import com.example.keshav.projecttcs.Image;
+import com.example.keshav.projecttcs.MainActivity;
+import com.example.keshav.projecttcs.R;
 
-    private static final int SELECT_PICTURE = 100;
-    private static final String TAG = "MainActivity";
-    private static final int CAM_REQUEST = 1313;
-    CoordinatorLayout coordinatorLayout;
-    FloatingActionButton btnSelectImage;
-    AppCompatImageView imgView;
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
-    DBHelper dbHelper;
+public class Gallery extends MainActivity {
+
+    private EditText fname;
+    private ImageView pic;
+    private DatabaseHandler dbi;
+    private String f_name;
+    private  ListView lv;
+    private dataAdapter data;
+    private Image dataModel;
+    private Bitmap bp;
+    private byte[] photo;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.acticity_camera);
 
-        // Find the views...
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
-        btnSelectImage = (FloatingActionButton) findViewById(R.id.btnSelectImage);
-        imgView = (AppCompatImageView) findViewById(R.id.imgView);
-
-        // Create the Database helper object
-        dbHelper = new DBHelper(this);
-
+        //Instantiate database handler
+        dbi=new DatabaseHandler(this);
+        lv = (ListView) findViewById(R.id.list1);
+        pic= (ImageView) findViewById(R.id.pic);
+        fname=(EditText) findViewById(R.id.txt1);
     }
 
-    private boolean hasCamera() {
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
-    }
+    public void buttonClicked(View v){
+        int id=v.getId();
 
+        switch(id){
 
-    // Show simple message using SnackBar
-    void showMessage(String message) {
-        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
-        snackbar.show();
-    }
+            case R.id.save:
 
-    // Choose an image from Gallery
-    void openImageChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE) {
-
-                Uri selectedImageUri = data.getData();
-
-                if (null != selectedImageUri) {
-
-                    // Saving to Database...
-                    if (saveImageInDB(selectedImageUri)) {
-                        showMessage("Image Saved in Database...");
-                        imgView.setImageURI(selectedImageUri);
-                    }
-
-                    // Reading from Database after 3 seconds just to show the message
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (loadImageFromDB()) {
-                                showMessage("Image Loaded from Database...");
-                            }
-                        }
-                    }, 3000);
+                if(fname.getText().toString().trim().equals("")){
+                    Toast.makeText(getApplicationContext(),"Name edit text is empty, Enter name", Toast.LENGTH_LONG).show();
+                }  else{
+                    addImages();
                 }
 
+                break;
+
+            case R.id.display:
+
+                ShowRecords();
+                break;
+            case R.id.pic:
+                selectImage();
+                break;
+        }
+    }
+
+    public void selectImage(){
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, 2);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case 2:
+                if(resultCode == RESULT_OK){
+                    Uri choosenImage = data.getData();
+
+                    if(choosenImage !=null){
+
+                        bp=decodeUri(choosenImage, 400);
+                        pic.setImageBitmap(bp);
+                    }
+                }
+        }
+    }
+
+
+    //COnvert and resize our image to 400dp for faster uploading our images to DB
+    protected Bitmap decodeUri(Uri selectedImage, int REQUIRED_SIZE) {
+
+        try {
+
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
+
+            // The new size we want to scale to
+            // final int REQUIRED_SIZE =  size;
+
+            // Find the correct scale value. It should be the power of 2.
+            int width_tmp = o.outWidth, height_tmp = o.outHeight;
+            int scale = 1;
+            while (true) {
+                if (width_tmp / 2 < REQUIRED_SIZE
+                        || height_tmp / 2 < REQUIRED_SIZE) {
+                    break;
+                }
+                width_tmp /= 2;
+                height_tmp /= 2;
+                scale *= 2;
             }
+
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
         }
-    }
-
-    @Override
-    public void onClick(View v) {openImageChooser();
-    }
-
-    // Save the
-    Boolean saveImageInDB(Uri selectedImageUri) {
-
-        try {
-            dbHelper.open();
-            InputStream iStream = getContentResolver().openInputStream(selectedImageUri);
-            byte[] inputData = Utils.getBytes(iStream);
-            dbHelper.insertImage(inputData);
-            dbHelper.close();
-            return true;
-        } catch (IOException ioe) {
-            Log.e(TAG, "<saveImageInDB> Error : " + ioe.getLocalizedMessage());
-            dbHelper.close();
-            return false;
+        catch (Exception e){
+            e.printStackTrace();
         }
+        return null;
+    }
+
+    //Convert bitmap to bytes
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+    private byte[] profileImage(Bitmap b){
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        b.compress(Bitmap.CompressFormat.PNG, 0, bos);
+        return bos.toByteArray();
 
     }
 
-    public void onButtonClick(View v) {
-        if (v.getId() == R.id.btn_camera) {
-            Intent cameraintent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraintent, CAM_REQUEST);
-        }
 
+
+    // function to get values from the Edittext and image
+    private void getValues(){
+        f_name = fname.getText().toString();
+        photo = profileImage(bp);
     }
 
-    Boolean loadImageFromDB() {
-        try {
-            dbHelper.open();
-            byte[] bytes = dbHelper.retreiveImageFromDB();
-            dbHelper.close();
-            // Show Image from DB in ImageView
-            imgView.setImageBitmap(Utils.getImage(bytes));
-            return true;
-        } catch (Exception e) {
-            Log.e(TAG, "<loadImageFromDB> Error : " + e.getLocalizedMessage());
-            dbHelper.close();
-            return false;
-        }
+    //Insert data to the database
+    private void addImages(){
+        getValues();
+
+        dbi.addImages(new Image(f_name, photo));
+        Toast.makeText(getApplicationContext(),"Saved successfully", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(this,MainActivity.class));
-        super.onBackPressed();
-    }
+    //Retrieve data from the database and set to the list view
+    private void ShowRecords(){
+        final ArrayList<Image> images = new ArrayList<>(dbi.getAllImages());
+        data=new dataAdapter(this, images);
 
+        lv.setAdapter(data);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                dataModel = images.get(position);
+
+                Toast.makeText(getApplicationContext(),String.valueOf(dataModel.getID()), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
+

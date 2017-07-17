@@ -1,7 +1,4 @@
-/**
- * Created by Shivani on 16-07-2017.
- */
-
+package com.example.keshav.projecttcs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,21 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.keshav.projecttcs.R;
-
 import java.util.ArrayList;
 
+/**
+ * Created by keshav on 17-07-2017.
+ */
 
-public class dataAdapter extends ArrayAdapter<Contact> {
+public class dataAdapter extends ArrayAdapter<Image> {
 
     Context context;
-    ArrayList<Contact> mcontact;
+    ArrayList<Image> mcontact;
 
 
-    public dataAdapter(Context context, ArrayList<Contact> contact) {
-        super(context, R.layout.listcontacts, contact);
+    public dataAdapter(Context context, ArrayList<Image> imagess) {
+        super(context, R.layout.listcontacts, imagess);
         this.context = context;
-        this.mcontact = contact;
+        this.mcontact = imagess;
     }
 
     public class Holder {
@@ -39,7 +37,7 @@ public class dataAdapter extends ArrayAdapter<Contact> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
 
-        Contact data = getItem(position);
+        Image data = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
 
         Holder viewHolder; // view lookup cache stored in tag

@@ -39,9 +39,9 @@ import java.util.regex.Pattern;
  * Created by keshav on 19-06-2017.
  */
 
-public class loginn extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class loginn extends MainActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    DatabaseHelper helper = new DatabaseHelper(loginn.this);
+    DatabaseHelper helper = new DatabaseHelper(this);
 
     Button login, signup;
     LoginButton loginButton;
@@ -52,6 +52,8 @@ public class loginn extends AppCompatActivity implements View.OnClickListener, G
    // private TextView
     public GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 9001;
+
+    public static String str;
 
 
     protected void onCreate (Bundle savedInstanceState) {

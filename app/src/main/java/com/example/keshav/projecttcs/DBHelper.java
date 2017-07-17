@@ -14,7 +14,7 @@ import static android.R.attr.y;
 /**
  * Created by Shivani on 07-07-2017.
  */
-2
+
 public class DBHelper {
 
     public static final String IMAGE_ID = "id";

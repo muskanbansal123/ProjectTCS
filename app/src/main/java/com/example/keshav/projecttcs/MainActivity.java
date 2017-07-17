@@ -144,13 +144,15 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_gallery) {
 
-            Intent inte = new Intent(MainActivity.this, Gallery.class);
+            Intent inte = new Intent(MainActivity.this, Camera.class);
             startActivity(inte);
             return true;
 
         } else if (id == R.id.nav_manage) {
 
-            startActivity(new Intent(MainActivity.this,MapsActivity.class));
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(intent);
+
 
         }else if (id == R.id.nav_req) {
 
@@ -167,6 +169,10 @@ public class MainActivity extends AppCompatActivity
             return true;
 
         }else if (id == R.id.nav_share) {
+
+            Intent inte = new Intent(MainActivity.this, Gallery.class);
+            startActivity(inte);
+
 
         } else if (id == R.id.nav_help) {
 

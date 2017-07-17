@@ -25,7 +25,7 @@ public class requestpage extends MainActivity  {
         setContentView(R.layout.content_request);
         request = (Button) findViewById(R.id.btn_request);
         city = (EditText) findViewById(R.id.editText_city);
-        dlist = (Button) findViewById(R.id.btn_display_list);
+        //dlist = (Button) findViewById(R.id.btn_display_list);
 
 
         request.setOnClickListener(new View.OnClickListener() {
@@ -65,12 +65,15 @@ public class requestpage extends MainActivity  {
                 } else {
                     Toast t = Toast.makeText(requestpage.this, "You made a request", Toast.LENGTH_SHORT);
                     t.show();
+
+                    Intent intent = new Intent(requestpage.this, BeneficiaryListActivity.class);
+                    startActivity(intent);
                 }
 
             }
         });
 
-        dlist.setOnClickListener(new View.OnClickListener() {
+       /* dlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
 
@@ -110,7 +113,7 @@ public class requestpage extends MainActivity  {
                 }
             }
 
-        });
+        });*/
     }
 
     @Override

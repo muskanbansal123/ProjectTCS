@@ -1,12 +1,11 @@
+package com.example.keshav.projecttcs;
+
 /**
- * Created by Shivani on 16-07-2017.
+ * Created by keshav on 17-07-2017.
  */
 
+public class Image {
 
-
-public class Contact {
-
-    //private variables
     int _id;
     String _fname;
     byte[] _img;
@@ -14,11 +13,11 @@ public class Contact {
 
 
     // Empty constructor
-    public Contact(){
+    public Image(){
 
     }
     // constructor
-    public Contact(int id, String fname, byte[] img){
+    public Image(int id, String fname, byte[] img){
         this._id = id;
         this._fname = fname;
         this._img = img;
@@ -26,7 +25,7 @@ public class Contact {
     }
 
     // constructor
-    public Contact(String fname, byte[] img){
+    public Image(String fname, byte[] img){
 
         this._fname = fname;
         this._img = img;
@@ -63,5 +62,4 @@ public class Contact {
     public void setImage(byte[] b){
         this._img=b;
     }
-
 }

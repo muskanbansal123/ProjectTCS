@@ -16,6 +16,8 @@ import org.w3c.dom.Text;
 
 import java.util.jar.Attributes;
 
+import static com.example.keshav.projecttcs.DatabaseHelper.COLUMN_EMAIL;
+
 /**
  * Created by keshav on 25-06-2017.
  */
@@ -62,11 +64,37 @@ public class Profile extends MainActivity {
         }
     }
 
-    public void viewAll()
-    {
+        public void viewAll()
+        {
 
-        Cursor res = helper.get_info();
+           Cursor res = helper.get_info();
+           String a;
+
+            /* if (res.moveToFirst())
+            {
+            do {
+                a = res.getString(res.getColumnIndex(COLUMN_EMAIL));
+                if (a.equals(loginn.str))
+                {
+                    //Log.d("Error: ","Email matched");
+                    //b = cursor.getString(cursor.getColumnIndex(COLUMN_PASS));
+                    //break;
+                }
+
+            }while (res.moveToNext());
+            }*/
+
+
             res.moveToFirst();
+            int mi;
+            mi=0;
+
+            while (loginn.str.equals(DatabaseHelper.a))
+            {
+                mi = mi+1;
+            }
+
+            res.moveToPosition(mi);
 
                 if (res.getCount() == 0) {
                     Toast.makeText(Profile.this, "No data Found", Toast.LENGTH_SHORT).show();
