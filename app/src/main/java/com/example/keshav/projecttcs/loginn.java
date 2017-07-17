@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,7 @@ import java.util.regex.Pattern;
  * Created by keshav on 19-06-2017.
  */
 
-public class loginn extends MainActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class loginn extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     DatabaseHelper helper = new DatabaseHelper(loginn.this);
 
@@ -161,16 +162,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     }
 
 
-    @Override
-    public void onBackPressed() {
-       startActivity(new Intent(loginn.this,MainActivity.class));
-        super.onBackPressed();
-    }
-
-    @Override
-
-
-    public void onClick(View v) {
+        public void onClick(View v) {
 
         switch (v.getId())
         {

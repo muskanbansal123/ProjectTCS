@@ -1,28 +1,27 @@
 package com.example.keshav.projecttcs;
 
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.content.pm.PackageManager;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.os.Handler;
+        import android.support.design.widget.CoordinatorLayout;
+        import android.support.design.widget.FloatingActionButton;
+        import android.support.design.widget.Snackbar;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.AppCompatImageView;
+        import android.support.v7.widget.Toolbar;
+        import android.util.Log;
+        import android.view.View;
 
-import java.io.IOException;
-import java.io.InputStream;
+        import java.io.IOException;
+        import java.io.InputStream;
 
-public class Gallery extends MainActivity implements View.OnClickListener {
+public class Gallery extends AppCompatActivity implements View.OnClickListener {
 
     private static final int SELECT_PICTURE = 100;
     private static final String TAG = "MainActivity";
-    private static final int CAM_REQUEST = 1313;
+
     CoordinatorLayout coordinatorLayout;
     FloatingActionButton btnSelectImage;
     AppCompatImageView imgView;
@@ -32,7 +31,7 @@ public class Gallery extends MainActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,17 +40,10 @@ public class Gallery extends MainActivity implements View.OnClickListener {
         btnSelectImage = (FloatingActionButton) findViewById(R.id.btnSelectImage);
         imgView = (AppCompatImageView) findViewById(R.id.imgView);
 
-        btnSelectImage.setOnClickListener(this);
-
         // Create the Database helper object
         dbHelper = new DBHelper(this);
 
     }
-    private boolean hasCamera()
-    {
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
-    }
-
 
     // Show simple message using SnackBar
     void showMessage(String message) {
@@ -97,8 +89,7 @@ public class Gallery extends MainActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        openImageChooser();
+    public void onClick(View v) {openImageChooser();
     }
 
     // Save the
@@ -115,14 +106,6 @@ public class Gallery extends MainActivity implements View.OnClickListener {
             Log.e(TAG, "<saveImageInDB> Error : " + ioe.getLocalizedMessage());
             dbHelper.close();
             return false;
-        }
-
-    }
-    public void onButtonClick(View v)
-    {
-        if (v.getId() == R.id.btn_camera) {
-            Intent cameraintent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraintent, CAM_REQUEST);
         }
 
     }
