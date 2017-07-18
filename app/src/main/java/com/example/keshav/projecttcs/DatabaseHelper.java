@@ -87,8 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query1 = "DROP TABLE IF EXISTS" + TABLE_UPDATEDB;
         db.execSQL(query1);
 
-        // Createdb(db);
-
         onCreate(db);
 
     }
@@ -150,17 +148,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
-        cursor.moveToFirst();
-        int m;
-        m=0;
+        //cursor.moveToFirst();
+        //int m;
+        //m=0;
 
-        while (loginn.str.equals(a))
-        {
-            m = m+1;
-        }
+        //while (loginn.str.equals(a))
+        //{
+         //   m = m+1;
+        //}
 
-       cursor.moveToPosition(m);
-
+       cursor.moveToPosition(pos);
 
         Profile.name.setText(cursor.getString(1));
 
@@ -194,7 +191,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public List<Contact> getAllBeneficiary() {
+    /*public List<Contact> getAllBeneficiary() {
         // array of columns to fetch
         String[] columns = {
                 //BeneficiaryContract.BeneficiaryEntry._ID,
@@ -211,13 +208,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
 
-        /*Cursor cursor = db.query(BeneficiaryContract.BeneficiaryEntry.TABLE_NAME, //Table to query
+        Cursor cursor = db.query(BeneficiaryContract.BeneficiaryEntry.TABLE_NAME, //Table to query
                 columns,    //columns to return
                 null,        //columns for the WHERE clause
                 null,        //The values for the WHERE clause
                 null,       //group the rows
                 null,       //filter by row groups
-                sortOrder); //The sort order*/
+                sortOrder); //The sort order
 
 
         String query1 = "select * from contacts";
@@ -227,7 +224,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query1,null);
 
         // Traversing through all rows and adding to list
-        if (cursor.moveToFirst()) {
+        //if (cursor.moveToFirst()) {
             do {
                 Contact beneficiary = new Contact();
                 ///beneficiary.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry._ID))));
@@ -244,11 +241,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // return user list
         return beneficiaryList;
-    }
+    }*/
 
 
 
-    public static String a,b;
+    public static String a,b = null;
+    public static int pos = 0;
+    //b = "not found";
     public String searchPass(String email)
     {
         db = this.getWritableDatabase();
@@ -268,6 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 {
                     //Log.d("Error: ","Email matched");
                     b = cursor.getString(cursor.getColumnIndex(COLUMN_PASS));
+                    pos = cursor.getPosition();
                     break;
                 }
 

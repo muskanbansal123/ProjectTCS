@@ -1,141 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#B39DDB"
+    android:layout_gravity="center"
 
-    <TextView
-        android:layout_width="wrap_content"
+    >
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Age"
-        android:id="@+id/textView_age"
-        android:layout_marginTop="66dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#0277BD"
-        />
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="80sp">
+        <EditText android:id="@+id/editText_age"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Age"
+            android:textColor="#FFFF"
+            android:textColorHint="#FFFF"
+            android:backgroundTint="#FFFF"
+            android:textColorHighlight="#FFFF"
+            />
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Height"
-        android:id="@+id/textView_height"
-        android:layout_marginTop="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:textColor="#0277BD"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="80sp">
+        <EditText android:id="@+id/editText_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Height"
+            android:textColor="#FFFF"
+            android:textColorHint="#FFFF"
+            android:backgroundTint="#FFFF"
+            android:textColorHighlight="#FFFF"/>
+    </android.support.design.widget.TextInputLayout>
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Weight"
-        android:id="@+id/textView_weight"
-        android:layout_marginTop="250dp"
-        android:layout_alignParentStart="@+id/textView_bloodgroup"
-        android:layout_alignParentLeft="@+id/textView_bloodgroup"
-        android:layout_marginLeft="10dp"
-        android:textColor="#0277BD"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="80sp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/editText_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Weight"
+            android:textColor="#FFFF"
+            android:textColorHint="#FFFF"
+            android:backgroundTint="#FFFF"
+            android:textColorHighlight="#FFFF"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Contact"
-        android:id="@+id/textView_phone"
-        android:layout_marginTop="450dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:textColor="#0277BD"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="80sp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/editText_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Donated Date"
+            android:textColor="#FFFF"
+            android:textColorHint="#FFFF"
+            android:backgroundTint="#FFFF"
+            android:textColorHighlight="#FFFF"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editText_phone"
-        android:backgroundTint="#0277BD"
-        android:layout_alignBottom="@+id/textView_phone"
-        android:layout_alignLeft="@+id/editText_weight"
-        android:layout_alignStart="@+id/editText_weight" />
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="80sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/editText_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Contact"
+            android:textColor="#FFFF"
+            android:textColorHint="#FFFF"
+            android:backgroundTint="#FFFF"
+            android:textColorHighlight="#FFFF"/>
+    </android.support.design.widget.TextInputLayout>
 
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editText_height"
-        android:backgroundTint="#0277BD"
-        android:layout_alignBottom="@+id/textView_height"
-        android:layout_alignLeft="@+id/editText_weight"
-        android:layout_alignStart="@+id/editText_weight" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editText_weight"
-        android:backgroundTint="#0277BD"
-        android:layout_alignBottom="@+id/textView_weight"
-        android:layout_alignLeft="@+id/editText_age"
-        android:layout_alignStart="@+id/editText_age" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editText_date"
-        android:backgroundTint="#0277BD"
-        android:layout_alignBottom="@+id/textView_date"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editText_age"
-        android:backgroundTint="#0277BD"
-        android:layout_alignBaseline="@+id/textView_age"
-        android:layout_alignBottom="@+id/textView_age"
-        android:layout_alignRight="@+id/btn_update"
-        android:layout_alignEnd="@+id/btn_update" />
-
-    <android.support.v7.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_update"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Update"
-        android:textSize="25dp"
-        android:textColor="#FFEBEE"
-        android:background="#29B6F6"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Last Donated Date"
-        android:id="@+id/textView_date"
-        android:textColor="#0277BD"
-        android:layout_above="@+id/editText_phone"
-        android:layout_alignLeft="@+id/textView_weight"
-        android:layout_alignStart="@+id/textView_weight"
-        android:layout_marginBottom="59dp" />
+        android:layout_marginTop="25sp"
+        android:text="Update"
+        android:textSize="25sp"
+        android:layout_marginLeft="140sp"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/buttonshape"
+        android:startColor="#D1C4E9"
+        android:endColor="#512DA8"/>
 
 
-</RelativeLayout>
+
+
+</LinearLayout>

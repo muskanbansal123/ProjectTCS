@@ -68,7 +68,7 @@ public class Profile extends MainActivity {
         {
 
            Cursor res = helper.get_info();
-           String a;
+           //String a;
 
             /* if (res.moveToFirst())
             {
@@ -84,18 +84,8 @@ public class Profile extends MainActivity {
             }while (res.moveToNext());
             }*/
 
-
             res.moveToFirst();
-            int mi;
-            mi=0;
-
-            while (loginn.str.equals(DatabaseHelper.a))
-            {
-                mi = mi+1;
-            }
-
-            res.moveToPosition(mi);
-
+            //res.moveToPosition(DatabaseHelper.pos);
                 if (res.getCount() == 0) {
                     Toast.makeText(Profile.this, "No data Found", Toast.LENGTH_SHORT).show();
                     return;

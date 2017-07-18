@@ -89,7 +89,7 @@ public class BeneficiaryListActivity extends MainActivity implements SearchView.
         recyclerViewBeneficiary.setAdapter(beneficiaryRecyclerAdapter);
         //databaseHelper = new DatabaseHelper(this);
 
-        getDataFromSQLite();
+        //getDataFromSQLite();
 
     }
 
@@ -138,7 +138,7 @@ public class BeneficiaryListActivity extends MainActivity implements SearchView.
     /**
      * This method is to fetch all user records from SQLite
      */
-    private void getDataFromSQLite() {
+    /*private void getDataFromSQLite() {
         // AsyncTask is used that SQLite operation not blocks the UI Thread.
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -155,5 +155,5 @@ public class BeneficiaryListActivity extends MainActivity implements SearchView.
                 beneficiaryRecyclerAdapter.notifyDataSetChanged();
             }
         }.execute();
-    }
+    }*/
 }

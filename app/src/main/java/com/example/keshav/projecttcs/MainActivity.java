@@ -163,8 +163,14 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_update) {
 
-            Intent inte = new Intent(MainActivity.this, Update.class);
-            startActivity(inte);
+            if (Profile.flag) {
+                Intent inte = new Intent(MainActivity.this, Update.class);
+                startActivity(inte);
+            } else {
+                Intent inte = new Intent(MainActivity.this, loginn.class);
+                startActivity(inte);
+
+            }
 
             return true;
 

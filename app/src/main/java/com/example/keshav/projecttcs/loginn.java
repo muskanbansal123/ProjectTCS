@@ -43,7 +43,8 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
-    Button login, signup;
+    Button login;
+    TextView signup;
     LoginButton loginButton;
     CallbackManager callbackManager;
 
@@ -78,7 +79,7 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
 
         login = (Button) findViewById(R.id.blogin);
-        signup = (Button)findViewById(R.id.bsignup);
+        signup = (TextView)findViewById(R.id.bsignup);
         loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
         callbackManager = CallbackManager.Factory.create();
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -254,6 +255,10 @@ public class loginn extends MainActivity implements View.OnClickListener, Google
     });
     }*/
 
+    public void onBackPressed() {
+        startActivity(new Intent(loginn.this, MainActivity.class));
+        super.onBackPressed();
+    }
 
 
 }

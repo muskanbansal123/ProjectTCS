@@ -31,8 +31,9 @@ public class Signup extends MainActivity {
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
-    Button l_login, bsignup;
+    Button  bsignup;
     private EditText gender;
+    TextView l_login;
 
     private Context mContext;
     private Activity mActivity;
@@ -48,7 +49,7 @@ public class Signup extends MainActivity {
         setContentView(R.layout.activity_signup);
 
 
-    l_login = (Button)findViewById(R.id.link_login);
+    l_login = (TextView)findViewById(R.id.link_login);
     bsignup = (Button)findViewById(R.id.Bsignupbutton);
     gender = (EditText)findViewById(R.id.input_gender);
         mContext = getApplicationContext();

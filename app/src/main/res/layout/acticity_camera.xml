@@ -7,14 +7,16 @@
         android:layout_gravity="center"
         android:textSize="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/AppTheme"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:onClick="buttonClicked"
         android:id="@+id/pic"
-        android:src="@drawable/bloodlogo"/>
+        android:src="@drawable/bloodlogo"
+        style="@style/AppTheme"/>
 
     <EditText
         android:layout_width="match_parent"
