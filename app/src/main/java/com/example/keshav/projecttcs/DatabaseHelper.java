@@ -128,9 +128,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor1 = db.rawQuery(query1,null);
+        Cursor cursor = db.rawQuery(query1,null);
 
-        int count1 = cursor1.getCount();
+        int count1 = cursor.getCount();
         values1.put(KEY_UPDATEDB, count1);
 
         values1.put(COLUMN_HEIGHT, c1.getHeight());
@@ -139,7 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values1.put(COLUMN_UAGE, c1.getUage());
         values1.put(COLUMN_UPHONE, c1.getUphone());
         db.insert(TABLE_UPDATEDB, null, values1);
-        //db.close();
+        db.close();
     }
 
 

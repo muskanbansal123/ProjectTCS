@@ -3,11 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#B39DDB"
     android:layout_gravity="center"
-
+    android:background="@drawable/buttonshape"
     >
-
 
 
     <android.support.design.widget.TextInputLayout
@@ -106,17 +104,15 @@
         android:id="@+id/btn_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25sp"
+        android:layout_marginTop="30sp"
         android:text="Update"
-        android:textSize="25sp"
+        android:textSize="21sp"
         android:layout_marginLeft="140sp"
         android:padding="10dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/buttonshape"
-        android:startColor="#D1C4E9"
-        android:endColor="#512DA8"/>
+        android:textColor="#000"
+        android:background="#FFEBEE"
+        android:shadowColor="#FFFFFF"
 
-
-
+        />
 
 </LinearLayout>

@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
-    android:background="#E58B8B">
+    android:background="@drawable/buttonshape">
 
     <LinearLayout
         android:orientation="vertical"
@@ -64,8 +64,8 @@
             android:padding="8dp"
             android:textSize="16sp"
             android:text="Login"
-            android:textColor="#FFFFFF"
-            android:background="#D13131"
+            android:textColor="#000"
+            android:background="#FFEBEE"
             android:shadowColor="#FFFFFF"
            />
 
