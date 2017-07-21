@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_gallery) {
 
-            Intent inte = new Intent(MainActivity.this, Camera.class);
+            Intent inte = new Intent(MainActivity.this, Gallery.class);
             startActivity(inte);
             return true;
 
@@ -176,8 +176,15 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_share) {
 
-            Intent inte = new Intent(MainActivity.this, Gallery.class);
-            startActivity(inte);
+
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            String shareBody = "your body here";
+            String shareSub = "your subject here";
+
+            intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+            intent.putExtra(Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(intent,"Share using"));
 
 
         } else if (id == R.id.nav_help) {
